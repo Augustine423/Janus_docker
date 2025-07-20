@@ -1,0 +1,14 @@
+multistream-1:
+    type = rtp
+    description = Stream 1
+    media = (
+        {
+            type = video
+            port = 5001
+            mid = VT001
+            label = 5001
+            pt = 100
+            codec = h264
+        }
+    )
+
