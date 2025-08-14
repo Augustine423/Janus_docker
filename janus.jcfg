@@ -43,7 +43,7 @@ nat: {
         full_trickle = true
         ice_lite = true
         ignore_mdns = true
-        nat_1_1_mapping = "auto"
+        nat_1_1_mapping = "0.0.0.0"
 }
 
 plugins: {

@@ -3,12 +3,17 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    network_mode: "host"
     environment:
-      - PUBLIC_IP=${PUBLIC_IP}
+      - PUBLIC_IP=localhost
+    ports:
+      - "80:80"
+      - "8088:8088"
+      - "8188:8188"
+      - "5001-5005:5001-5005/udp"
     volumes:
       - recordings:/opt/janus/recordings
     restart: unless-stopped
 
 volumes:
   recordings:
+    driver: local

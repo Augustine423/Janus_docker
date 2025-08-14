@@ -2,7 +2,7 @@
 set -e
 
 # Auto-detect public IP
-PUBLIC_IP=$(curl -s https://api.ipify.org || echo "127.0.0.1")
+PUBLIC_IP=localhost
 echo "Using PUBLIC_IP: $PUBLIC_IP"
 
 # Start nginx as a daemon (background)
