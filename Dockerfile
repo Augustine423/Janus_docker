@@ -67,6 +67,8 @@ COPY janus.transport.pfunix.jcfg /opt/janus/etc/janus/janus.transport.pfunix.jcf
 COPY janus.transport.websockets.jcfg /opt/janus/etc/janus/janus.transport.websockets.jcfg
 COPY janus.plugin.streaming.jcfg /opt/janus/etc/janus/janus.plugin.streaming.jcfg
 COPY janus.transport.http.jcfg /opt/janus/etc/janus/janus.transport.http.jcfg
+COPY ./cert/combined_certificate.pem /etc/nginx/cert/combined_certificate.pem
+COPY ./cert/aioceaneye.key /etc/nginx/cert/aioceaneye.key
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy demo files to nginx web root
@@ -78,7 +80,7 @@ RUN chmod +x /entrypoint.sh
 
 
 # Expose necessary ports
-EXPOSE 80 8088 8188 5001-5500/udp
+EXPOSE 80 443 8088 8188 8989 5001-5005/udp
 
 # Set entrypoint
 ENTRYPOINT ["/entrypoint.sh"]

@@ -7,13 +7,14 @@ services:
       - PUBLIC_IP=localhost
     ports:
       - "80:80"
+      - "443:443"
       - "8088:8088"
       - "8188:8188"
+      - "8989:8989"
       - "5001-5005:5001-5005/udp"
-    volumes:
-      - recordings:/opt/janus/recordings
-    restart: unless-stopped
+    networks:
+      - janus-net
 
-volumes:
-  recordings:
-    driver: local
+networks:
+  janus-net:
+    driver: bridge
