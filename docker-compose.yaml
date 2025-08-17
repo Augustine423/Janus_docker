@@ -1,19 +1,32 @@
+
 services:
   janus:
     build:
       context: .
       dockerfile: Dockerfile
     environment:
-      - PUBLIC_IP=localhost
+      - AUTO_PUBLIC_IP=true
+      - PUBLIC_IP=${PUBLIC_IP:-} # Can be overridden by env file
+      - UDP_PORT_RANGE=5001-5500
     ports:
       - "80:80"
       - "443:443"
       - "8088:8088"
       - "8188:8188"
       - "8989:8989"
-      - "5001-5005:5001-5005/udp"
+      - "5001-5500:5001-5500/udp"
+    volumes:
+      - ./cert:/etc/nginx/cert:ro
+      - ./recordings:/opt/janus/recordings
+      - ./configs:/opt/janus/etc/janus:ro
+    restart: unless-stopped
     networks:
       - janus-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8088/admin"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
 networks:
   janus-net:
