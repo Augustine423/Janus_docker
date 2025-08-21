@@ -1,42 +1,22 @@
-# WebSockets configuration for Janus
 general: {
-    json = "indented"                # Indented JSON for readability
-    pingpong_trigger = 30            # Send PING after 30s of inactivity
-    pingpong_timeout = 10            # Timeout if no PONG received in 10s
-
-    # Enable WebSocket (WS) on port 8188
-    ws = true                        # Enable WS
-    ws_port = 8188                   # Default WS port
-    # ws_interface = "eth0"          # Bind to specific interface (optional)
-    # ws_ip = "192.168.0.1"          # Bind to specific IP (optional)
-    # ws_acl = "127.0.0.1,192.168.1." # Restrict access (optional)
-
-    # Enable Secure WebSocket (WSS) on port 8989
-    wss = true                       # Enable WSS
-    wss_port = 8989                  # Default WSS port
-    # wss_interface = "eth0"         # Bind to specific interface (optional)
-    # wss_ip = "192.168.0.1"         # Bind to specific IP (optional)
-    # ws_logging = "err,warn"        # Debug logs (optional)
+        json = "indented"
+        ws = true
+        ws_port = 8188
+        wss = false
 }
 
-# Admin WebSocket API (disabled by default)
 admin: {
-    admin_ws = false                 # Disable Admin WS (enable if needed)
-    admin_ws_port = 7188             # Default Admin WS port
-    admin_wss = false                # Disable Admin WSS (enable if needed)
-    admin_wss_port = 7989            # Default Admin WSS port
+        admin_ws = false
+        admin_ws_port = 7188
+        admin_wss = false
 }
 
-# CORS settings (adjust if needed)
 cors: {
-    # allow_origin = "https://www.aioceaneye.com, https://aioceaneye.com", "*"  # Set your domain
-    # enforce_cors = true                     # Strict CORS enforcement
 }
 
-# SSL/TLS certificates (required for WSS)
 certificates: {
-    cert_pem = "/etc/nginx/cert/combined_certificate.pem"  # Fullchain PEM
-    cert_key = "/etc/nginx/cert/aioceaneye.key"            # Private key
-    cert_pwd = "없음"   # Uncomment if key is password-protected
-    #ciphers = "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256"  # Strong ciphers
+	cert_pem = "/var/www/http/combined_certificate.pem"
+	cert_key = "/var/www/http/aioceaneye.key"
+	cert_pwd = "없음"
+	#ciphers = "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256"
 }

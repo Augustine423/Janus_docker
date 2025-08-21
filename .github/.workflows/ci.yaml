@@ -2,8 +2,9 @@ name: Build Janus Multi-Arch Docker Image
 
 on:
   push:
-    branches:
-      - dev
+    branches: [ "dev" ]
+  pull_request:
+    branches: [ "dev" ]
 
 jobs:
   build:
