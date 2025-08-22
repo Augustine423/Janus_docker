@@ -15,16 +15,9 @@ multistream-001: {
             label = "5001"
             port = 5001
             pt = 100
-            audio = true
-            video = true
-            audioport = 6001
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5001
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5001-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5001-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -40,16 +33,9 @@ multistream-002: {
             label = "5002"
             port = 5002
             pt = 100
-            audio = true
-            video = true
-            audioport = 6002
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5002
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5002-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5002-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -65,16 +51,9 @@ multistream-003: {
             label = "5003"
             port = 5003
             pt = 100
-            audio = true
-            video = true
-            audioport = 6003
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5003
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5003-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5003-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -90,16 +69,9 @@ multistream-004: {
             label = "5004"
             port = 5004
             pt = 100
-            audio = true
-            video = true
-            audioport = 6004
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5004
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5004-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5004-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -115,16 +87,9 @@ multistream-005: {
             label = "5005"
             port = 5005
             pt = 100
-            audio = true
-            video = true
-            audioport = 6005
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5005
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5005-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5005-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -140,16 +105,9 @@ multistream-006: {
             label = "5006"
             port = 5006
             pt = 100
-            audio = true
-            video = true
-            audioport = 6006
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5006
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5006-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5006-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -165,16 +123,9 @@ multistream-007: {
             label = "5007"
             port = 5007
             pt = 100
-            audio = true
-            video = true
-            audioport = 6007
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5007
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5007-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5007-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -190,16 +141,9 @@ multistream-008: {
             label = "5008"
             port = 5008
             pt = 100
-            audio = true
-            video = true
-            audioport = 6008
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5008
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5008-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5008-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -215,16 +159,9 @@ multistream-009: {
             label = "5009"
             port = 5009
             pt = 100
-            audio = true
-            video = true
-            audioport = 6009
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5009
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5009-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5009-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -240,16 +177,9 @@ multistream-010: {
             label = "5010"
             port = 5010
             pt = 100
-            audio = true
-            video = true
-            audioport = 6010
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5010
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5010-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5010-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -265,16 +195,9 @@ multistream-011: {
             label = "5011"
             port = 5011
             pt = 100
-            audio = true
-            video = true
-            audioport = 6011
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5011
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5011-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5011-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -290,16 +213,9 @@ multistream-012: {
             label = "5012"
             port = 5012
             pt = 100
-            audio = true
-            video = true
-            audioport = 6012
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5012
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5012-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5012-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -315,16 +231,9 @@ multistream-013: {
             label = "5013"
             port = 5013
             pt = 100
-            audio = true
-            video = true
-            audioport = 6013
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5013
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5013-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5013-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -340,16 +249,9 @@ multistream-014: {
             label = "5014"
             port = 5014
             pt = 100
-            audio = true
-            video = true
-            audioport = 6014
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5014
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5014-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5014-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -365,16 +267,9 @@ multistream-015: {
             label = "5015"
             port = 5015
             pt = 100
-            audio = true
-            video = true
-            audioport = 6015
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5015
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5015-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5015-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -390,16 +285,9 @@ multistream-016: {
             label = "5016"
             port = 5016
             pt = 100
-            audio = true
-            video = true
-            audioport = 6016
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5016
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5016-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5016-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -415,16 +303,9 @@ multistream-017: {
             label = "5017"
             port = 5017
             pt = 100
-            audio = true
-            video = true
-            audioport = 6017
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5017
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5017-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5017-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -440,16 +321,9 @@ multistream-018: {
             label = "5018"
             port = 5018
             pt = 100
-            audio = true
-            video = true
-            audioport = 6018
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5018
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5018-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5018-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -465,16 +339,9 @@ multistream-019: {
             label = "5019"
             port = 5019
             pt = 100
-            audio = true
-            video = true
-            audioport = 6019
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5019
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5019-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5019-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -490,16 +357,9 @@ multistream-020: {
             label = "5020"
             port = 5020
             pt = 100
-            audio = true
-            video = true
-            audioport = 6020
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5020
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5020-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5020-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -515,16 +375,9 @@ multistream-021: {
             label = "5021"
             port = 5021
             pt = 100
-            audio = true
-            video = true
-            audioport = 6021
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5021
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5021-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5021-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -540,16 +393,9 @@ multistream-022: {
             label = "5022"
             port = 5022
             pt = 100
-            audio = true
-            video = true
-            audioport = 6022
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5022
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5022-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5022-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -565,16 +411,9 @@ multistream-023: {
             label = "5023"
             port = 5023
             pt = 100
-            audio = true
-            video = true
-            audioport = 6023
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5023
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5023-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5023-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -590,16 +429,9 @@ multistream-024: {
             label = "5024"
             port = 5024
             pt = 100
-            audio = true
-            video = true
-            audioport = 6024
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5024
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5024-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5024-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -615,16 +447,9 @@ multistream-025: {
             label = "5025"
             port = 5025
             pt = 100
-            audio = true
-            video = true
-            audioport = 6025
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5025
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5025-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5025-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -640,16 +465,9 @@ multistream-026: {
             label = "5026"
             port = 5026
             pt = 100
-            audio = true
-            video = true
-            audioport = 6026
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5026
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5026-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5026-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -665,16 +483,9 @@ multistream-027: {
             label = "5027"
             port = 5027
             pt = 100
-            audio = true
-            video = true
-            audioport = 6027
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5027
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5027-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5027-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -690,16 +501,9 @@ multistream-028: {
             label = "5028"
             port = 5028
             pt = 100
-            audio = true
-            video = true
-            audioport = 6028
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5028
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5028-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5028-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -715,16 +519,9 @@ multistream-029: {
             label = "5029"
             port = 5029
             pt = 100
-            audio = true
-            video = true
-            audioport = 6029
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5029
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5029-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5029-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -740,16 +537,9 @@ multistream-030: {
             label = "5030"
             port = 5030
             pt = 100
-            audio = true
-            video = true
-            audioport = 6030
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5030
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5030-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5030-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -765,16 +555,9 @@ multistream-031: {
             label = "5031"
             port = 5031
             pt = 100
-            audio = true
-            video = true
-            audioport = 6031
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5031
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5031-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5031-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -790,16 +573,9 @@ multistream-032: {
             label = "5032"
             port = 5032
             pt = 100
-            audio = true
-            video = true
-            audioport = 6032
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5032
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5032-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5032-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -815,16 +591,9 @@ multistream-033: {
             label = "5033"
             port = 5033
             pt = 100
-            audio = true
-            video = true
-            audioport = 6033
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5033
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5033-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5033-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -840,16 +609,9 @@ multistream-034: {
             label = "5034"
             port = 5034
             pt = 100
-            audio = true
-            video = true
-            audioport = 6034
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5034
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5034-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5034-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -865,16 +627,9 @@ multistream-035: {
             label = "5035"
             port = 5035
             pt = 100
-            audio = true
-            video = true
-            audioport = 6035
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5035
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5035-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5035-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -890,16 +645,9 @@ multistream-036: {
             label = "5036"
             port = 5036
             pt = 100
-            audio = true
-            video = true
-            audioport = 6036
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5036
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5036-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5036-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -915,16 +663,9 @@ multistream-037: {
             label = "5037"
             port = 5037
             pt = 100
-            audio = true
-            video = true
-            audioport = 6037
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5037
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5037-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5037-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -940,16 +681,9 @@ multistream-038: {
             label = "5038"
             port = 5038
             pt = 100
-            audio = true
-            video = true
-            audioport = 6038
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5038
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5038-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5038-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -965,16 +699,9 @@ multistream-039: {
             label = "5039"
             port = 5039
             pt = 100
-            audio = true
-            video = true
-            audioport = 6039
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5039
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5039-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5039-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -990,16 +717,9 @@ multistream-040: {
             label = "5040"
             port = 5040
             pt = 100
-            audio = true
-            video = true
-            audioport = 6040
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5040
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5040-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5040-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1015,16 +735,9 @@ multistream-041: {
             label = "5041"
             port = 5041
             pt = 100
-            audio = true
-            video = true
-            audioport = 6041
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5041
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5041-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5041-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1040,16 +753,9 @@ multistream-042: {
             label = "5042"
             port = 5042
             pt = 100
-            audio = true
-            video = true
-            audioport = 6042
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5042
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5042-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5042-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1065,16 +771,9 @@ multistream-043: {
             label = "5043"
             port = 5043
             pt = 100
-            audio = true
-            video = true
-            audioport = 6043
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5043
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5043-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5043-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1090,16 +789,9 @@ multistream-044: {
             label = "5044"
             port = 5044
             pt = 100
-            audio = true
-            video = true
-            audioport = 6044
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5044
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5044-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5044-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1115,16 +807,9 @@ multistream-045: {
             label = "5045"
             port = 5045
             pt = 100
-            audio = true
-            video = true
-            audioport = 6045
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5045
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5045-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5045-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1140,16 +825,9 @@ multistream-046: {
             label = "5046"
             port = 5046
             pt = 100
-            audio = true
-            video = true
-            audioport = 6046
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5046
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5046-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5046-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1165,16 +843,9 @@ multistream-047: {
             label = "5047"
             port = 5047
             pt = 100
-            audio = true
-            video = true
-            audioport = 6047
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5047
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5047-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5047-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1190,16 +861,9 @@ multistream-048: {
             label = "5048"
             port = 5048
             pt = 100
-            audio = true
-            video = true
-            audioport = 6048
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5048
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5048-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5048-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1215,16 +879,9 @@ multistream-049: {
             label = "5049"
             port = 5049
             pt = 100
-            audio = true
-            video = true
-            audioport = 6049
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5049
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5049-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5049-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1240,16 +897,9 @@ multistream-050: {
             label = "5050"
             port = 5050
             pt = 100
-            audio = true
-            video = true
-            audioport = 6050
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5050
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5050-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5050-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1265,16 +915,9 @@ multistream-051: {
             label = "5051"
             port = 5051
             pt = 100
-            audio = true
-            video = true
-            audioport = 6051
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5051
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5051-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5051-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1290,16 +933,9 @@ multistream-052: {
             label = "5052"
             port = 5052
             pt = 100
-            audio = true
-            video = true
-            audioport = 6052
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5052
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5052-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5052-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1315,16 +951,9 @@ multistream-053: {
             label = "5053"
             port = 5053
             pt = 100
-            audio = true
-            video = true
-            audioport = 6053
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5053
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5053-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5053-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1340,16 +969,9 @@ multistream-054: {
             label = "5054"
             port = 5054
             pt = 100
-            audio = true
-            video = true
-            audioport = 6054
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5054
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5054-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5054-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1365,16 +987,9 @@ multistream-055: {
             label = "5055"
             port = 5055
             pt = 100
-            audio = true
-            video = true
-            audioport = 6055
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5055
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5055-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5055-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1390,16 +1005,9 @@ multistream-056: {
             label = "5056"
             port = 5056
             pt = 100
-            audio = true
-            video = true
-            audioport = 6056
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5056
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5056-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5056-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1415,16 +1023,9 @@ multistream-057: {
             label = "5057"
             port = 5057
             pt = 100
-            audio = true
-            video = true
-            audioport = 6057
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5057
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5057-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5057-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1440,16 +1041,9 @@ multistream-058: {
             label = "5058"
             port = 5058
             pt = 100
-            audio = true
-            video = true
-            audioport = 6058
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5058
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5058-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5058-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1465,16 +1059,9 @@ multistream-059: {
             label = "5059"
             port = 5059
             pt = 100
-            audio = true
-            video = true
-            audioport = 6059
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5059
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5059-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5059-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1490,16 +1077,9 @@ multistream-060: {
             label = "5060"
             port = 5060
             pt = 100
-            audio = true
-            video = true
-            audioport = 6060
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5060
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5060-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5060-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1515,16 +1095,9 @@ multistream-061: {
             label = "5061"
             port = 5061
             pt = 100
-            audio = true
-            video = true
-            audioport = 6061
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5061
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5061-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5061-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1540,16 +1113,9 @@ multistream-062: {
             label = "5062"
             port = 5062
             pt = 100
-            audio = true
-            video = true
-            audioport = 6062
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5062
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5062-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5062-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1565,16 +1131,9 @@ multistream-063: {
             label = "5063"
             port = 5063
             pt = 100
-            audio = true
-            video = true
-            audioport = 6063
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5063
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5063-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5063-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1590,16 +1149,9 @@ multistream-064: {
             label = "5064"
             port = 5064
             pt = 100
-            audio = true
-            video = true
-            audioport = 6064
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5064
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5064-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5064-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1615,16 +1167,9 @@ multistream-065: {
             label = "5065"
             port = 5065
             pt = 100
-            audio = true
-            video = true
-            audioport = 6065
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5065
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5065-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5065-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1640,16 +1185,9 @@ multistream-066: {
             label = "5066"
             port = 5066
             pt = 100
-            audio = true
-            video = true
-            audioport = 6066
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5066
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5066-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5066-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1665,16 +1203,9 @@ multistream-067: {
             label = "5067"
             port = 5067
             pt = 100
-            audio = true
-            video = true
-            audioport = 6067
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5067
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5067-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5067-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1690,16 +1221,9 @@ multistream-068: {
             label = "5068"
             port = 5068
             pt = 100
-            audio = true
-            video = true
-            audioport = 6068
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5068
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5068-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5068-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1715,16 +1239,9 @@ multistream-069: {
             label = "5069"
             port = 5069
             pt = 100
-            audio = true
-            video = true
-            audioport = 6069
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5069
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5069-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5069-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1740,16 +1257,9 @@ multistream-070: {
             label = "5070"
             port = 5070
             pt = 100
-            audio = true
-            video = true
-            audioport = 6070
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5070
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5070-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5070-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1765,16 +1275,9 @@ multistream-071: {
             label = "5071"
             port = 5071
             pt = 100
-            audio = true
-            video = true
-            audioport = 6071
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5071
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5071-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5071-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1790,16 +1293,9 @@ multistream-072: {
             label = "5072"
             port = 5072
             pt = 100
-            audio = true
-            video = true
-            audioport = 6072
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5072
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5072-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5072-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1815,16 +1311,9 @@ multistream-073: {
             label = "5073"
             port = 5073
             pt = 100
-            audio = true
-            video = true
-            audioport = 6073
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5073
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5073-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5073-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1840,16 +1329,9 @@ multistream-074: {
             label = "5074"
             port = 5074
             pt = 100
-            audio = true
-            video = true
-            audioport = 6074
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5074
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5074-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5074-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1865,16 +1347,9 @@ multistream-075: {
             label = "5075"
             port = 5075
             pt = 100
-            audio = true
-            video = true
-            audioport = 6075
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5075
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5075-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5075-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1890,16 +1365,9 @@ multistream-076: {
             label = "5076"
             port = 5076
             pt = 100
-            audio = true
-            video = true
-            audioport = 6076
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5076
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5076-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5076-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1915,16 +1383,9 @@ multistream-077: {
             label = "5077"
             port = 5077
             pt = 100
-            audio = true
-            video = true
-            audioport = 6077
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5077
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5077-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5077-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1940,16 +1401,9 @@ multistream-078: {
             label = "5078"
             port = 5078
             pt = 100
-            audio = true
-            video = true
-            audioport = 6078
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5078
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5078-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5078-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1965,16 +1419,9 @@ multistream-079: {
             label = "5079"
             port = 5079
             pt = 100
-            audio = true
-            video = true
-            audioport = 6079
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5079
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5079-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5079-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -1990,16 +1437,9 @@ multistream-080: {
             label = "5080"
             port = 5080
             pt = 100
-            audio = true
-            video = true
-            audioport = 6080
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5080
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5080-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5080-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2015,16 +1455,9 @@ multistream-081: {
             label = "5081"
             port = 5081
             pt = 100
-            audio = true
-            video = true
-            audioport = 6081
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5081
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5081-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5081-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2040,16 +1473,9 @@ multistream-082: {
             label = "5082"
             port = 5082
             pt = 100
-            audio = true
-            video = true
-            audioport = 6082
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5082
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5082-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5082-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2065,16 +1491,9 @@ multistream-083: {
             label = "5083"
             port = 5083
             pt = 100
-            audio = true
-            video = true
-            audioport = 6083
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5083
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5083-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5083-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2090,16 +1509,9 @@ multistream-084: {
             label = "5084"
             port = 5084
             pt = 100
-            audio = true
-            video = true
-            audioport = 6084
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5084
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5084-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5084-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2115,16 +1527,9 @@ multistream-085: {
             label = "5085"
             port = 5085
             pt = 100
-            audio = true
-            video = true
-            audioport = 6085
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5085
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5085-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5085-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2140,16 +1545,9 @@ multistream-086: {
             label = "5086"
             port = 5086
             pt = 100
-            audio = true
-            video = true
-            audioport = 6086
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5086
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5086-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5086-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2165,16 +1563,9 @@ multistream-087: {
             label = "5087"
             port = 5087
             pt = 100
-            audio = true
-            video = true
-            audioport = 6087
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5087
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5087-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5087-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2190,16 +1581,9 @@ multistream-088: {
             label = "5088"
             port = 5088
             pt = 100
-            audio = true
-            video = true
-            audioport = 6088
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5088
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5088-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5088-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2215,16 +1599,9 @@ multistream-089: {
             label = "5089"
             port = 5089
             pt = 100
-            audio = true
-            video = true
-            audioport = 6089
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5089
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5089-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5089-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2240,16 +1617,9 @@ multistream-090: {
             label = "5090"
             port = 5090
             pt = 100
-            audio = true
-            video = true
-            audioport = 6090
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5090
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5090-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5090-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2265,16 +1635,9 @@ multistream-091: {
             label = "5091"
             port = 5091
             pt = 100
-            audio = true
-            video = true
-            audioport = 6091
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5091
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5091-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5091-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2290,16 +1653,9 @@ multistream-092: {
             label = "5092"
             port = 5092
             pt = 100
-            audio = true
-            video = true
-            audioport = 6092
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5092
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5092-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5092-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2315,16 +1671,9 @@ multistream-093: {
             label = "5093"
             port = 5093
             pt = 100
-            audio = true
-            video = true
-            audioport = 6093
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5093
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5093-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5093-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2340,16 +1689,9 @@ multistream-094: {
             label = "5094"
             port = 5094
             pt = 100
-            audio = true
-            video = true
-            audioport = 6094
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5094
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5094-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5094-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2365,16 +1707,9 @@ multistream-095: {
             label = "5095"
             port = 5095
             pt = 100
-            audio = true
-            video = true
-            audioport = 6095
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5095
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5095-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5095-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2390,16 +1725,9 @@ multistream-096: {
             label = "5096"
             port = 5096
             pt = 100
-            audio = true
-            video = true
-            audioport = 6096
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5096
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5096-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5096-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2415,16 +1743,9 @@ multistream-097: {
             label = "5097"
             port = 5097
             pt = 100
-            audio = true
-            video = true
-            audioport = 6097
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5097
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5097-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5097-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2440,16 +1761,9 @@ multistream-098: {
             label = "5098"
             port = 5098
             pt = 100
-            audio = true
-            video = true
-            audioport = 6098
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5098
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5098-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5098-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2465,16 +1779,9 @@ multistream-099: {
             label = "5099"
             port = 5099
             pt = 100
-            audio = true
-            video = true
-            audioport = 6099
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5099
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5099-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5099-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2490,16 +1797,9 @@ multistream-100: {
             label = "5100"
             port = 5100
             pt = 100
-            audio = true
-            video = true
-            audioport = 6100
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5100
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5100-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5100-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2515,16 +1815,9 @@ multistream-101: {
             label = "5101"
             port = 5101
             pt = 100
-            audio = true
-            video = true
-            audioport = 6101
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5101
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5101-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5101-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2540,16 +1833,9 @@ multistream-102: {
             label = "5102"
             port = 5102
             pt = 100
-            audio = true
-            video = true
-            audioport = 6102
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5102
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5102-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5102-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2565,16 +1851,9 @@ multistream-103: {
             label = "5103"
             port = 5103
             pt = 100
-            audio = true
-            video = true
-            audioport = 6103
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5103
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5103-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5103-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2590,16 +1869,9 @@ multistream-104: {
             label = "5104"
             port = 5104
             pt = 100
-            audio = true
-            video = true
-            audioport = 6104
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5104
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5104-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5104-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2615,16 +1887,9 @@ multistream-105: {
             label = "5105"
             port = 5105
             pt = 100
-            audio = true
-            video = true
-            audioport = 6105
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5105
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5105-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5105-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2640,16 +1905,9 @@ multistream-106: {
             label = "5106"
             port = 5106
             pt = 100
-            audio = true
-            video = true
-            audioport = 6106
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5106
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5106-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5106-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2665,16 +1923,9 @@ multistream-107: {
             label = "5107"
             port = 5107
             pt = 100
-            audio = true
-            video = true
-            audioport = 6107
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5107
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5107-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5107-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2690,16 +1941,9 @@ multistream-108: {
             label = "5108"
             port = 5108
             pt = 100
-            audio = true
-            video = true
-            audioport = 6108
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5108
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5108-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5108-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2715,16 +1959,9 @@ multistream-109: {
             label = "5109"
             port = 5109
             pt = 100
-            audio = true
-            video = true
-            audioport = 6109
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5109
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5109-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5109-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2740,16 +1977,9 @@ multistream-110: {
             label = "5110"
             port = 5110
             pt = 100
-            audio = true
-            video = true
-            audioport = 6110
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5110
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5110-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5110-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2765,16 +1995,9 @@ multistream-111: {
             label = "5111"
             port = 5111
             pt = 100
-            audio = true
-            video = true
-            audioport = 6111
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5111
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5111-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5111-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2790,16 +2013,9 @@ multistream-112: {
             label = "5112"
             port = 5112
             pt = 100
-            audio = true
-            video = true
-            audioport = 6112
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5112
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5112-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5112-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2815,16 +2031,9 @@ multistream-113: {
             label = "5113"
             port = 5113
             pt = 100
-            audio = true
-            video = true
-            audioport = 6113
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5113
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5113-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5113-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2840,16 +2049,9 @@ multistream-114: {
             label = "5114"
             port = 5114
             pt = 100
-            audio = true
-            video = true
-            audioport = 6114
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5114
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5114-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5114-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2865,16 +2067,9 @@ multistream-115: {
             label = "5115"
             port = 5115
             pt = 100
-            audio = true
-            video = true
-            audioport = 6115
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5115
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5115-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5115-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2890,16 +2085,9 @@ multistream-116: {
             label = "5116"
             port = 5116
             pt = 100
-            audio = true
-            video = true
-            audioport = 6116
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5116
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5116-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5116-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2915,16 +2103,9 @@ multistream-117: {
             label = "5117"
             port = 5117
             pt = 100
-            audio = true
-            video = true
-            audioport = 6117
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5117
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5117-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5117-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2940,16 +2121,9 @@ multistream-118: {
             label = "5118"
             port = 5118
             pt = 100
-            audio = true
-            video = true
-            audioport = 6118
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5118
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5118-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5118-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2965,16 +2139,9 @@ multistream-119: {
             label = "5119"
             port = 5119
             pt = 100
-            audio = true
-            video = true
-            audioport = 6119
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5119
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5119-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5119-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -2990,16 +2157,9 @@ multistream-120: {
             label = "5120"
             port = 5120
             pt = 100
-            audio = true
-            video = true
-            audioport = 6120
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5120
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5120-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5120-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3015,16 +2175,9 @@ multistream-121: {
             label = "5121"
             port = 5121
             pt = 100
-            audio = true
-            video = true
-            audioport = 6121
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5121
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5121-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5121-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3040,16 +2193,9 @@ multistream-122: {
             label = "5122"
             port = 5122
             pt = 100
-            audio = true
-            video = true
-            audioport = 6122
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5122
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5122-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5122-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3065,16 +2211,9 @@ multistream-123: {
             label = "5123"
             port = 5123
             pt = 100
-            audio = true
-            video = true
-            audioport = 6123
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5123
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5123-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5123-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3090,16 +2229,9 @@ multistream-124: {
             label = "5124"
             port = 5124
             pt = 100
-            audio = true
-            video = true
-            audioport = 6124
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5124
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5124-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5124-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3115,16 +2247,9 @@ multistream-125: {
             label = "5125"
             port = 5125
             pt = 100
-            audio = true
-            video = true
-            audioport = 6125
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5125
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5125-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5125-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3140,16 +2265,9 @@ multistream-126: {
             label = "5126"
             port = 5126
             pt = 100
-            audio = true
-            video = true
-            audioport = 6126
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5126
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5126-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5126-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3165,16 +2283,9 @@ multistream-127: {
             label = "5127"
             port = 5127
             pt = 100
-            audio = true
-            video = true
-            audioport = 6127
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5127
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5127-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5127-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3190,16 +2301,9 @@ multistream-128: {
             label = "5128"
             port = 5128
             pt = 100
-            audio = true
-            video = true
-            audioport = 6128
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5128
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5128-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5128-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3215,16 +2319,9 @@ multistream-129: {
             label = "5129"
             port = 5129
             pt = 100
-            audio = true
-            video = true
-            audioport = 6129
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5129
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5129-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5129-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3240,16 +2337,9 @@ multistream-130: {
             label = "5130"
             port = 5130
             pt = 100
-            audio = true
-            video = true
-            audioport = 6130
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5130
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5130-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5130-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3265,16 +2355,9 @@ multistream-131: {
             label = "5131"
             port = 5131
             pt = 100
-            audio = true
-            video = true
-            audioport = 6131
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5131
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5131-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5131-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3290,16 +2373,9 @@ multistream-132: {
             label = "5132"
             port = 5132
             pt = 100
-            audio = true
-            video = true
-            audioport = 6132
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5132
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5132-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5132-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3315,16 +2391,9 @@ multistream-133: {
             label = "5133"
             port = 5133
             pt = 100
-            audio = true
-            video = true
-            audioport = 6133
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5133
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5133-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5133-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3340,16 +2409,9 @@ multistream-134: {
             label = "5134"
             port = 5134
             pt = 100
-            audio = true
-            video = true
-            audioport = 6134
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5134
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5134-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5134-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3365,16 +2427,9 @@ multistream-135: {
             label = "5135"
             port = 5135
             pt = 100
-            audio = true
-            video = true
-            audioport = 6135
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5135
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5135-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5135-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3390,16 +2445,9 @@ multistream-136: {
             label = "5136"
             port = 5136
             pt = 100
-            audio = true
-            video = true
-            audioport = 6136
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5136
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5136-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5136-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3415,16 +2463,9 @@ multistream-137: {
             label = "5137"
             port = 5137
             pt = 100
-            audio = true
-            video = true
-            audioport = 6137
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5137
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5137-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5137-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3440,16 +2481,9 @@ multistream-138: {
             label = "5138"
             port = 5138
             pt = 100
-            audio = true
-            video = true
-            audioport = 6138
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5138
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5138-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5138-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3465,16 +2499,9 @@ multistream-139: {
             label = "5139"
             port = 5139
             pt = 100
-            audio = true
-            video = true
-            audioport = 6139
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5139
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5139-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5139-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3490,16 +2517,9 @@ multistream-140: {
             label = "5140"
             port = 5140
             pt = 100
-            audio = true
-            video = true
-            audioport = 6140
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5140
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5140-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5140-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3515,16 +2535,9 @@ multistream-141: {
             label = "5141"
             port = 5141
             pt = 100
-            audio = true
-            video = true
-            audioport = 6141
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5141
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5141-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5141-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3540,16 +2553,9 @@ multistream-142: {
             label = "5142"
             port = 5142
             pt = 100
-            audio = true
-            video = true
-            audioport = 6142
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5142
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5142-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5142-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3565,16 +2571,9 @@ multistream-143: {
             label = "5143"
             port = 5143
             pt = 100
-            audio = true
-            video = true
-            audioport = 6143
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5143
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5143-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5143-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3590,16 +2589,9 @@ multistream-144: {
             label = "5144"
             port = 5144
             pt = 100
-            audio = true
-            video = true
-            audioport = 6144
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5144
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5144-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5144-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3615,16 +2607,9 @@ multistream-145: {
             label = "5145"
             port = 5145
             pt = 100
-            audio = true
-            video = true
-            audioport = 6145
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5145
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5145-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5145-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3640,16 +2625,9 @@ multistream-146: {
             label = "5146"
             port = 5146
             pt = 100
-            audio = true
-            video = true
-            audioport = 6146
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5146
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5146-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5146-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3665,16 +2643,9 @@ multistream-147: {
             label = "5147"
             port = 5147
             pt = 100
-            audio = true
-            video = true
-            audioport = 6147
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5147
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5147-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5147-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3690,16 +2661,9 @@ multistream-148: {
             label = "5148"
             port = 5148
             pt = 100
-            audio = true
-            video = true
-            audioport = 6148
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5148
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5148-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5148-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3715,16 +2679,9 @@ multistream-149: {
             label = "5149"
             port = 5149
             pt = 100
-            audio = true
-            video = true
-            audioport = 6149
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5149
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5149-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5149-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3740,16 +2697,9 @@ multistream-150: {
             label = "5150"
             port = 5150
             pt = 100
-            audio = true
-            video = true
-            audioport = 6150
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5150
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5150-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5150-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3765,16 +2715,9 @@ multistream-151: {
             label = "5151"
             port = 5151
             pt = 100
-            audio = true
-            video = true
-            audioport = 6151
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5151
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5151-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5151-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3790,16 +2733,9 @@ multistream-152: {
             label = "5152"
             port = 5152
             pt = 100
-            audio = true
-            video = true
-            audioport = 6152
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5152
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5152-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5152-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3815,16 +2751,9 @@ multistream-153: {
             label = "5153"
             port = 5153
             pt = 100
-            audio = true
-            video = true
-            audioport = 6153
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5153
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5153-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5153-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3840,16 +2769,9 @@ multistream-154: {
             label = "5154"
             port = 5154
             pt = 100
-            audio = true
-            video = true
-            audioport = 6154
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5154
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5154-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5154-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3865,16 +2787,9 @@ multistream-155: {
             label = "5155"
             port = 5155
             pt = 100
-            audio = true
-            video = true
-            audioport = 6155
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5155
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5155-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5155-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3890,16 +2805,9 @@ multistream-156: {
             label = "5156"
             port = 5156
             pt = 100
-            audio = true
-            video = true
-            audioport = 6156
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5156
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5156-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5156-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3915,16 +2823,9 @@ multistream-157: {
             label = "5157"
             port = 5157
             pt = 100
-            audio = true
-            video = true
-            audioport = 6157
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5157
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5157-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5157-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3940,16 +2841,9 @@ multistream-158: {
             label = "5158"
             port = 5158
             pt = 100
-            audio = true
-            video = true
-            audioport = 6158
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5158
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5158-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5158-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3965,16 +2859,9 @@ multistream-159: {
             label = "5159"
             port = 5159
             pt = 100
-            audio = true
-            video = true
-            audioport = 6159
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5159
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5159-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5159-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -3990,16 +2877,9 @@ multistream-160: {
             label = "5160"
             port = 5160
             pt = 100
-            audio = true
-            video = true
-            audioport = 6160
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5160
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5160-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5160-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4015,16 +2895,9 @@ multistream-161: {
             label = "5161"
             port = 5161
             pt = 100
-            audio = true
-            video = true
-            audioport = 6161
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5161
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5161-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5161-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4040,16 +2913,9 @@ multistream-162: {
             label = "5162"
             port = 5162
             pt = 100
-            audio = true
-            video = true
-            audioport = 6162
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5162
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5162-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5162-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4065,16 +2931,9 @@ multistream-163: {
             label = "5163"
             port = 5163
             pt = 100
-            audio = true
-            video = true
-            audioport = 6163
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5163
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5163-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5163-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4090,16 +2949,9 @@ multistream-164: {
             label = "5164"
             port = 5164
             pt = 100
-            audio = true
-            video = true
-            audioport = 6164
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5164
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5164-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5164-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4115,16 +2967,9 @@ multistream-165: {
             label = "5165"
             port = 5165
             pt = 100
-            audio = true
-            video = true
-            audioport = 6165
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5165
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5165-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5165-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4140,16 +2985,9 @@ multistream-166: {
             label = "5166"
             port = 5166
             pt = 100
-            audio = true
-            video = true
-            audioport = 6166
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5166
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5166-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5166-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4165,16 +3003,9 @@ multistream-167: {
             label = "5167"
             port = 5167
             pt = 100
-            audio = true
-            video = true
-            audioport = 6167
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5167
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5167-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5167-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4190,16 +3021,9 @@ multistream-168: {
             label = "5168"
             port = 5168
             pt = 100
-            audio = true
-            video = true
-            audioport = 6168
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5168
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5168-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5168-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4215,16 +3039,9 @@ multistream-169: {
             label = "5169"
             port = 5169
             pt = 100
-            audio = true
-            video = true
-            audioport = 6169
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5169
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5169-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5169-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4240,16 +3057,9 @@ multistream-170: {
             label = "5170"
             port = 5170
             pt = 100
-            audio = true
-            video = true
-            audioport = 6170
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5170
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5170-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5170-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4265,16 +3075,9 @@ multistream-171: {
             label = "5171"
             port = 5171
             pt = 100
-            audio = true
-            video = true
-            audioport = 6171
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5171
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5171-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5171-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4290,16 +3093,9 @@ multistream-172: {
             label = "5172"
             port = 5172
             pt = 100
-            audio = true
-            video = true
-            audioport = 6172
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5172
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5172-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5172-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4315,16 +3111,9 @@ multistream-173: {
             label = "5173"
             port = 5173
             pt = 100
-            audio = true
-            video = true
-            audioport = 6173
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5173
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5173-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5173-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4340,16 +3129,9 @@ multistream-174: {
             label = "5174"
             port = 5174
             pt = 100
-            audio = true
-            video = true
-            audioport = 6174
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5174
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5174-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5174-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4365,16 +3147,9 @@ multistream-175: {
             label = "5175"
             port = 5175
             pt = 100
-            audio = true
-            video = true
-            audioport = 6175
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5175
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5175-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5175-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4390,16 +3165,9 @@ multistream-176: {
             label = "5176"
             port = 5176
             pt = 100
-            audio = true
-            video = true
-            audioport = 6176
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5176
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5176-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5176-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4415,16 +3183,9 @@ multistream-177: {
             label = "5177"
             port = 5177
             pt = 100
-            audio = true
-            video = true
-            audioport = 6177
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5177
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5177-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5177-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4440,16 +3201,9 @@ multistream-178: {
             label = "5178"
             port = 5178
             pt = 100
-            audio = true
-            video = true
-            audioport = 6178
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5178
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5178-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5178-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4465,16 +3219,9 @@ multistream-179: {
             label = "5179"
             port = 5179
             pt = 100
-            audio = true
-            video = true
-            audioport = 6179
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5179
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5179-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5179-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4490,16 +3237,9 @@ multistream-180: {
             label = "5180"
             port = 5180
             pt = 100
-            audio = true
-            video = true
-            audioport = 6180
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5180
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5180-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5180-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4515,16 +3255,9 @@ multistream-181: {
             label = "5181"
             port = 5181
             pt = 100
-            audio = true
-            video = true
-            audioport = 6181
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5181
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5181-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5181-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4540,16 +3273,9 @@ multistream-182: {
             label = "5182"
             port = 5182
             pt = 100
-            audio = true
-            video = true
-            audioport = 6182
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5182
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5182-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5182-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4565,16 +3291,9 @@ multistream-183: {
             label = "5183"
             port = 5183
             pt = 100
-            audio = true
-            video = true
-            audioport = 6183
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5183
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5183-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5183-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4590,16 +3309,9 @@ multistream-184: {
             label = "5184"
             port = 5184
             pt = 100
-            audio = true
-            video = true
-            audioport = 6184
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5184
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5184-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5184-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4615,16 +3327,9 @@ multistream-185: {
             label = "5185"
             port = 5185
             pt = 100
-            audio = true
-            video = true
-            audioport = 6185
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5185
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5185-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5185-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4640,16 +3345,9 @@ multistream-186: {
             label = "5186"
             port = 5186
             pt = 100
-            audio = true
-            video = true
-            audioport = 6186
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5186
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5186-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5186-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4665,16 +3363,9 @@ multistream-187: {
             label = "5187"
             port = 5187
             pt = 100
-            audio = true
-            video = true
-            audioport = 6187
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5187
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5187-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5187-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4690,16 +3381,9 @@ multistream-188: {
             label = "5188"
             port = 5188
             pt = 100
-            audio = true
-            video = true
-            audioport = 6188
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5188
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5188-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5188-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4715,16 +3399,9 @@ multistream-189: {
             label = "5189"
             port = 5189
             pt = 100
-            audio = true
-            video = true
-            audioport = 6189
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5189
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5189-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5189-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4740,16 +3417,9 @@ multistream-190: {
             label = "5190"
             port = 5190
             pt = 100
-            audio = true
-            video = true
-            audioport = 6190
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5190
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5190-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5190-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4765,16 +3435,9 @@ multistream-191: {
             label = "5191"
             port = 5191
             pt = 100
-            audio = true
-            video = true
-            audioport = 6191
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5191
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5191-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5191-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4790,16 +3453,9 @@ multistream-192: {
             label = "5192"
             port = 5192
             pt = 100
-            audio = true
-            video = true
-            audioport = 6192
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5192
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5192-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5192-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4815,16 +3471,9 @@ multistream-193: {
             label = "5193"
             port = 5193
             pt = 100
-            audio = true
-            video = true
-            audioport = 6193
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5193
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5193-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5193-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4840,16 +3489,9 @@ multistream-194: {
             label = "5194"
             port = 5194
             pt = 100
-            audio = true
-            video = true
-            audioport = 6194
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5194
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5194-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5194-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4865,16 +3507,9 @@ multistream-195: {
             label = "5195"
             port = 5195
             pt = 100
-            audio = true
-            video = true
-            audioport = 6195
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5195
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5195-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5195-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4890,16 +3525,9 @@ multistream-196: {
             label = "5196"
             port = 5196
             pt = 100
-            audio = true
-            video = true
-            audioport = 6196
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5196
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5196-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5196-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4915,16 +3543,9 @@ multistream-197: {
             label = "5197"
             port = 5197
             pt = 100
-            audio = true
-            video = true
-            audioport = 6197
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5197
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5197-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5197-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4940,16 +3561,9 @@ multistream-198: {
             label = "5198"
             port = 5198
             pt = 100
-            audio = true
-            video = true
-            audioport = 6198
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5198
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5198-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5198-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4965,16 +3579,9 @@ multistream-199: {
             label = "5199"
             port = 5199
             pt = 100
-            audio = true
-            video = true
-            audioport = 6199
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5199
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5199-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5199-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -4990,16 +3597,9 @@ multistream-200: {
             label = "5200"
             port = 5200
             pt = 100
-            audio = true
-            video = true
-            audioport = 6200
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5200
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5200-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5200-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5015,16 +3615,9 @@ multistream-201: {
             label = "5201"
             port = 5201
             pt = 100
-            audio = true
-            video = true
-            audioport = 6201
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5201
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5201-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5201-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5040,16 +3633,9 @@ multistream-202: {
             label = "5202"
             port = 5202
             pt = 100
-            audio = true
-            video = true
-            audioport = 6202
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5202
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5202-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5202-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5065,16 +3651,9 @@ multistream-203: {
             label = "5203"
             port = 5203
             pt = 100
-            audio = true
-            video = true
-            audioport = 6203
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5203
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5203-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5203-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5090,16 +3669,9 @@ multistream-204: {
             label = "5204"
             port = 5204
             pt = 100
-            audio = true
-            video = true
-            audioport = 6204
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5204
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5204-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5204-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5115,16 +3687,9 @@ multistream-205: {
             label = "5205"
             port = 5205
             pt = 100
-            audio = true
-            video = true
-            audioport = 6205
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5205
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5205-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5205-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5140,16 +3705,9 @@ multistream-206: {
             label = "5206"
             port = 5206
             pt = 100
-            audio = true
-            video = true
-            audioport = 6206
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5206
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5206-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5206-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5165,16 +3723,9 @@ multistream-207: {
             label = "5207"
             port = 5207
             pt = 100
-            audio = true
-            video = true
-            audioport = 6207
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5207
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5207-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5207-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5190,16 +3741,9 @@ multistream-208: {
             label = "5208"
             port = 5208
             pt = 100
-            audio = true
-            video = true
-            audioport = 6208
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5208
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5208-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5208-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5215,16 +3759,9 @@ multistream-209: {
             label = "5209"
             port = 5209
             pt = 100
-            audio = true
-            video = true
-            audioport = 6209
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5209
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5209-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5209-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5240,16 +3777,9 @@ multistream-210: {
             label = "5210"
             port = 5210
             pt = 100
-            audio = true
-            video = true
-            audioport = 6210
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5210
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5210-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5210-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5265,16 +3795,9 @@ multistream-211: {
             label = "5211"
             port = 5211
             pt = 100
-            audio = true
-            video = true
-            audioport = 6211
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5211
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5211-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5211-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5290,16 +3813,9 @@ multistream-212: {
             label = "5212"
             port = 5212
             pt = 100
-            audio = true
-            video = true
-            audioport = 6212
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5212
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5212-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5212-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5315,16 +3831,9 @@ multistream-213: {
             label = "5213"
             port = 5213
             pt = 100
-            audio = true
-            video = true
-            audioport = 6213
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5213
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5213-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5213-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5340,16 +3849,9 @@ multistream-214: {
             label = "5214"
             port = 5214
             pt = 100
-            audio = true
-            video = true
-            audioport = 6214
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5214
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5214-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5214-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5365,16 +3867,9 @@ multistream-215: {
             label = "5215"
             port = 5215
             pt = 100
-            audio = true
-            video = true
-            audioport = 6215
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5215
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5215-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5215-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5390,16 +3885,9 @@ multistream-216: {
             label = "5216"
             port = 5216
             pt = 100
-            audio = true
-            video = true
-            audioport = 6216
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5216
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5216-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5216-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5415,16 +3903,9 @@ multistream-217: {
             label = "5217"
             port = 5217
             pt = 100
-            audio = true
-            video = true
-            audioport = 6217
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5217
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5217-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5217-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5440,16 +3921,9 @@ multistream-218: {
             label = "5218"
             port = 5218
             pt = 100
-            audio = true
-            video = true
-            audioport = 6218
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5218
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5218-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5218-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5465,16 +3939,9 @@ multistream-219: {
             label = "5219"
             port = 5219
             pt = 100
-            audio = true
-            video = true
-            audioport = 6219
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5219
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5219-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5219-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5490,16 +3957,9 @@ multistream-220: {
             label = "5220"
             port = 5220
             pt = 100
-            audio = true
-            video = true
-            audioport = 6220
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5220
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5220-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5220-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5515,16 +3975,9 @@ multistream-221: {
             label = "5221"
             port = 5221
             pt = 100
-            audio = true
-            video = true
-            audioport = 6221
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5221
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5221-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5221-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5540,16 +3993,9 @@ multistream-222: {
             label = "5222"
             port = 5222
             pt = 100
-            audio = true
-            video = true
-            audioport = 6222
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5222
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5222-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5222-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5565,16 +4011,9 @@ multistream-223: {
             label = "5223"
             port = 5223
             pt = 100
-            audio = true
-            video = true
-            audioport = 6223
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5223
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5223-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5223-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5590,16 +4029,9 @@ multistream-224: {
             label = "5224"
             port = 5224
             pt = 100
-            audio = true
-            video = true
-            audioport = 6224
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5224
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5224-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5224-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5615,16 +4047,9 @@ multistream-225: {
             label = "5225"
             port = 5225
             pt = 100
-            audio = true
-            video = true
-            audioport = 6225
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5225
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5225-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5225-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5640,16 +4065,9 @@ multistream-226: {
             label = "5226"
             port = 5226
             pt = 100
-            audio = true
-            video = true
-            audioport = 6226
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5226
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5226-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5226-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5665,16 +4083,9 @@ multistream-227: {
             label = "5227"
             port = 5227
             pt = 100
-            audio = true
-            video = true
-            audioport = 6227
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5227
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5227-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5227-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5690,16 +4101,9 @@ multistream-228: {
             label = "5228"
             port = 5228
             pt = 100
-            audio = true
-            video = true
-            audioport = 6228
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5228
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5228-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5228-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5715,16 +4119,9 @@ multistream-229: {
             label = "5229"
             port = 5229
             pt = 100
-            audio = true
-            video = true
-            audioport = 6229
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5229
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5229-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5229-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5740,16 +4137,9 @@ multistream-230: {
             label = "5230"
             port = 5230
             pt = 100
-            audio = true
-            video = true
-            audioport = 6230
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5230
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5230-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5230-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5765,16 +4155,9 @@ multistream-231: {
             label = "5231"
             port = 5231
             pt = 100
-            audio = true
-            video = true
-            audioport = 6231
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5231
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5231-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5231-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5790,16 +4173,9 @@ multistream-232: {
             label = "5232"
             port = 5232
             pt = 100
-            audio = true
-            video = true
-            audioport = 6232
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5232
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5232-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5232-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5815,16 +4191,9 @@ multistream-233: {
             label = "5233"
             port = 5233
             pt = 100
-            audio = true
-            video = true
-            audioport = 6233
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5233
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5233-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5233-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5840,16 +4209,9 @@ multistream-234: {
             label = "5234"
             port = 5234
             pt = 100
-            audio = true
-            video = true
-            audioport = 6234
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5234
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5234-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5234-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5865,16 +4227,9 @@ multistream-235: {
             label = "5235"
             port = 5235
             pt = 100
-            audio = true
-            video = true
-            audioport = 6235
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5235
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5235-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5235-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5890,16 +4245,9 @@ multistream-236: {
             label = "5236"
             port = 5236
             pt = 100
-            audio = true
-            video = true
-            audioport = 6236
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5236
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5236-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5236-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5915,16 +4263,9 @@ multistream-237: {
             label = "5237"
             port = 5237
             pt = 100
-            audio = true
-            video = true
-            audioport = 6237
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5237
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5237-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5237-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5940,16 +4281,9 @@ multistream-238: {
             label = "5238"
             port = 5238
             pt = 100
-            audio = true
-            video = true
-            audioport = 6238
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5238
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5238-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5238-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5965,16 +4299,9 @@ multistream-239: {
             label = "5239"
             port = 5239
             pt = 100
-            audio = true
-            video = true
-            audioport = 6239
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5239
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5239-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5239-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -5990,16 +4317,9 @@ multistream-240: {
             label = "5240"
             port = 5240
             pt = 100
-            audio = true
-            video = true
-            audioport = 6240
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5240
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5240-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5240-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6015,16 +4335,9 @@ multistream-241: {
             label = "5241"
             port = 5241
             pt = 100
-            audio = true
-            video = true
-            audioport = 6241
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5241
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5241-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5241-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6040,16 +4353,9 @@ multistream-242: {
             label = "5242"
             port = 5242
             pt = 100
-            audio = true
-            video = true
-            audioport = 6242
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5242
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5242-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5242-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6065,16 +4371,9 @@ multistream-243: {
             label = "5243"
             port = 5243
             pt = 100
-            audio = true
-            video = true
-            audioport = 6243
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5243
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5243-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5243-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6090,16 +4389,9 @@ multistream-244: {
             label = "5244"
             port = 5244
             pt = 100
-            audio = true
-            video = true
-            audioport = 6244
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5244
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5244-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5244-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6115,16 +4407,9 @@ multistream-245: {
             label = "5245"
             port = 5245
             pt = 100
-            audio = true
-            video = true
-            audioport = 6245
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5245
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5245-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5245-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6140,16 +4425,9 @@ multistream-246: {
             label = "5246"
             port = 5246
             pt = 100
-            audio = true
-            video = true
-            audioport = 6246
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5246
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5246-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5246-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6165,16 +4443,9 @@ multistream-247: {
             label = "5247"
             port = 5247
             pt = 100
-            audio = true
-            video = true
-            audioport = 6247
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5247
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5247-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5247-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6190,16 +4461,9 @@ multistream-248: {
             label = "5248"
             port = 5248
             pt = 100
-            audio = true
-            video = true
-            audioport = 6248
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5248
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5248-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5248-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6215,16 +4479,9 @@ multistream-249: {
             label = "5249"
             port = 5249
             pt = 100
-            audio = true
-            video = true
-            audioport = 6249
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5249
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5249-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5249-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6240,16 +4497,9 @@ multistream-250: {
             label = "5250"
             port = 5250
             pt = 100
-            audio = true
-            video = true
-            audioport = 6250
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5250
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5250-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5250-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6265,16 +4515,9 @@ multistream-251: {
             label = "5251"
             port = 5251
             pt = 100
-            audio = true
-            video = true
-            audioport = 6251
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5251
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5251-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5251-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6290,16 +4533,9 @@ multistream-252: {
             label = "5252"
             port = 5252
             pt = 100
-            audio = true
-            video = true
-            audioport = 6252
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5252
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5252-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5252-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6315,16 +4551,9 @@ multistream-253: {
             label = "5253"
             port = 5253
             pt = 100
-            audio = true
-            video = true
-            audioport = 6253
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5253
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5253-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5253-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6340,16 +4569,9 @@ multistream-254: {
             label = "5254"
             port = 5254
             pt = 100
-            audio = true
-            video = true
-            audioport = 6254
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5254
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5254-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5254-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6365,16 +4587,9 @@ multistream-255: {
             label = "5255"
             port = 5255
             pt = 100
-            audio = true
-            video = true
-            audioport = 6255
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5255
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5255-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5255-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6390,16 +4605,9 @@ multistream-256: {
             label = "5256"
             port = 5256
             pt = 100
-            audio = true
-            video = true
-            audioport = 6256
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5256
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5256-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5256-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6415,16 +4623,9 @@ multistream-257: {
             label = "5257"
             port = 5257
             pt = 100
-            audio = true
-            video = true
-            audioport = 6257
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5257
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5257-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5257-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6440,16 +4641,9 @@ multistream-258: {
             label = "5258"
             port = 5258
             pt = 100
-            audio = true
-            video = true
-            audioport = 6258
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5258
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5258-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5258-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6465,16 +4659,9 @@ multistream-259: {
             label = "5259"
             port = 5259
             pt = 100
-            audio = true
-            video = true
-            audioport = 6259
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5259
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5259-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5259-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6490,16 +4677,9 @@ multistream-260: {
             label = "5260"
             port = 5260
             pt = 100
-            audio = true
-            video = true
-            audioport = 6260
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5260
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5260-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5260-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6515,16 +4695,9 @@ multistream-261: {
             label = "5261"
             port = 5261
             pt = 100
-            audio = true
-            video = true
-            audioport = 6261
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5261
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5261-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5261-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6540,16 +4713,9 @@ multistream-262: {
             label = "5262"
             port = 5262
             pt = 100
-            audio = true
-            video = true
-            audioport = 6262
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5262
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5262-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5262-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6565,16 +4731,9 @@ multistream-263: {
             label = "5263"
             port = 5263
             pt = 100
-            audio = true
-            video = true
-            audioport = 6263
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5263
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5263-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5263-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6590,16 +4749,9 @@ multistream-264: {
             label = "5264"
             port = 5264
             pt = 100
-            audio = true
-            video = true
-            audioport = 6264
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5264
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5264-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5264-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6615,16 +4767,9 @@ multistream-265: {
             label = "5265"
             port = 5265
             pt = 100
-            audio = true
-            video = true
-            audioport = 6265
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5265
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5265-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5265-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6640,16 +4785,9 @@ multistream-266: {
             label = "5266"
             port = 5266
             pt = 100
-            audio = true
-            video = true
-            audioport = 6266
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5266
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5266-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5266-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6665,16 +4803,9 @@ multistream-267: {
             label = "5267"
             port = 5267
             pt = 100
-            audio = true
-            video = true
-            audioport = 6267
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5267
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5267-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5267-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6690,16 +4821,9 @@ multistream-268: {
             label = "5268"
             port = 5268
             pt = 100
-            audio = true
-            video = true
-            audioport = 6268
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5268
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5268-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5268-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6715,16 +4839,9 @@ multistream-269: {
             label = "5269"
             port = 5269
             pt = 100
-            audio = true
-            video = true
-            audioport = 6269
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5269
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5269-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5269-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6740,16 +4857,9 @@ multistream-270: {
             label = "5270"
             port = 5270
             pt = 100
-            audio = true
-            video = true
-            audioport = 6270
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5270
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5270-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5270-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6765,16 +4875,9 @@ multistream-271: {
             label = "5271"
             port = 5271
             pt = 100
-            audio = true
-            video = true
-            audioport = 6271
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5271
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5271-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5271-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6790,16 +4893,9 @@ multistream-272: {
             label = "5272"
             port = 5272
             pt = 100
-            audio = true
-            video = true
-            audioport = 6272
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5272
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5272-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5272-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6815,16 +4911,9 @@ multistream-273: {
             label = "5273"
             port = 5273
             pt = 100
-            audio = true
-            video = true
-            audioport = 6273
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5273
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5273-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5273-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6840,16 +4929,9 @@ multistream-274: {
             label = "5274"
             port = 5274
             pt = 100
-            audio = true
-            video = true
-            audioport = 6274
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5274
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5274-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5274-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6865,16 +4947,9 @@ multistream-275: {
             label = "5275"
             port = 5275
             pt = 100
-            audio = true
-            video = true
-            audioport = 6275
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5275
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5275-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5275-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6890,16 +4965,9 @@ multistream-276: {
             label = "5276"
             port = 5276
             pt = 100
-            audio = true
-            video = true
-            audioport = 6276
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5276
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5276-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5276-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6915,16 +4983,9 @@ multistream-277: {
             label = "5277"
             port = 5277
             pt = 100
-            audio = true
-            video = true
-            audioport = 6277
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5277
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5277-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5277-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6940,16 +5001,9 @@ multistream-278: {
             label = "5278"
             port = 5278
             pt = 100
-            audio = true
-            video = true
-            audioport = 6278
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5278
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5278-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5278-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6965,16 +5019,9 @@ multistream-279: {
             label = "5279"
             port = 5279
             pt = 100
-            audio = true
-            video = true
-            audioport = 6279
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5279
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5279-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5279-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -6990,16 +5037,9 @@ multistream-280: {
             label = "5280"
             port = 5280
             pt = 100
-            audio = true
-            video = true
-            audioport = 6280
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5280
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5280-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5280-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -7015,16 +5055,9 @@ multistream-281: {
             label = "5281"
             port = 5281
             pt = 100
-            audio = true
-            video = true
-            audioport = 6281
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5281
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5281-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5281-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -7040,16 +5073,9 @@ multistream-282: {
             label = "5282"
             port = 5282
             pt = 100
-            audio = true
-            video = true
-            audioport = 6282
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5282
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5282-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5282-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -7065,16 +5091,9 @@ multistream-283: {
             label = "5283"
             port = 5283
             pt = 100
-            audio = true
-            video = true
-            audioport = 6283
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5283
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5283-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5283-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -7090,16 +5109,9 @@ multistream-284: {
             label = "5284"
             port = 5284
             pt = 100
-            audio = true
-            video = true
-            audioport = 6284
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5284
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5284-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5284-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -7115,16 +5127,9 @@ multistream-285: {
             label = "5285"
             port = 5285
             pt = 100
-            audio = true
-            video = true
-            audioport = 6285
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5285
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5285-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5285-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -7140,16 +5145,9 @@ multistream-286: {
             label = "5286"
             port = 5286
             pt = 100
-            audio = true
-            video = true
-            audioport = 6286
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5286
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5286-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5286-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -7165,16 +5163,9 @@ multistream-287: {
             label = "5287"
             port = 5287
             pt = 100
-            audio = true
-            video = true
-            audioport = 6287
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5287
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5287-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5287-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -7190,16 +5181,9 @@ multistream-288: {
             label = "5288"
             port = 5288
             pt = 100
-            audio = true
-            video = true
-            audioport = 6288
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5288
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5288-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5288-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -7215,16 +5199,9 @@ multistream-289: {
             label = "5289"
             port = 5289
             pt = 100
-            audio = true
-            video = true
-            audioport = 6289
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5289
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5289-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5289-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -7240,16 +5217,9 @@ multistream-290: {
             label = "5290"
             port = 5290
             pt = 100
-            audio = true
-            video = true
-            audioport = 6290
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5290
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5290-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5290-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -7265,16 +5235,9 @@ multistream-291: {
             label = "5291"
             port = 5291
             pt = 100
-            audio = true
-            video = true
-            audioport = 6291
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5291
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5291-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5291-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -7290,16 +5253,9 @@ multistream-292: {
             label = "5292"
             port = 5292
             pt = 100
-            audio = true
-            video = true
-            audioport = 6292
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5292
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5292-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5292-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -7315,16 +5271,9 @@ multistream-293: {
             label = "5293"
             port = 5293
             pt = 100
-            audio = true
-            video = true
-            audioport = 6293
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5293
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5293-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5293-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -7340,16 +5289,9 @@ multistream-294: {
             label = "5294"
             port = 5294
             pt = 100
-            audio = true
-            video = true
-            audioport = 6294
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5294
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5294-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5294-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -7365,16 +5307,9 @@ multistream-295: {
             label = "5295"
             port = 5295
             pt = 100
-            audio = true
-            video = true
-            audioport = 6295
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5295
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5295-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5295-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -7390,16 +5325,9 @@ multistream-296: {
             label = "5296"
             port = 5296
             pt = 100
-            audio = true
-            video = true
-            audioport = 6296
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5296
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5296-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5296-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -7415,16 +5343,9 @@ multistream-297: {
             label = "5297"
             port = 5297
             pt = 100
-            audio = true
-            video = true
-            audioport = 6297
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5297
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5297-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5297-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -7440,16 +5361,9 @@ multistream-298: {
             label = "5298"
             port = 5298
             pt = 100
-            audio = true
-            video = true
-            audioport = 6298
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5298
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5298-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5298-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -7465,16 +5379,9 @@ multistream-299: {
             label = "5299"
             port = 5299
             pt = 100
-            audio = true
-            video = true
-            audioport = 6299
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5299
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5299-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5299-%Y%m%d%H%M%S.mjr"
         }
     )
 }
@@ -7490,16 +5397,9 @@ multistream-300: {
             label = "5300"
             port = 5300
             pt = 100
-            audio = true
-            video = true
-            audioport = 6300
-            audiopt = 111
-            audiocodec = "opus"
-            videoport = 5300
-            videopt = 100
-            videocodec = "h264"
+            codec = "h264"
             record = true
-            recfile = "/opt/janus/share/janus/recordings/stream-5300-%Y%m%d%H%M%S.mjr"
+            recfile = "/opt/janus/recordings/stream-5300-%Y%m%d%H%M%S.mjr"
         }
     )
 }
