@@ -1,19 +1,19 @@
-version: "3.9"
 services:
-
-  janus-backend:
+  janus:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: janus-backend
+    environment:
+      - PUBLIC_IP=localhost
     ports:
-      - "443:443"
       - "80:80"
-      - "8088:8088"  # HTTP API
-      - "8089:8089"  # HTTPS API
-      - "8188:8188"  # WS
-      - "8989:8989"  # WSS
-      - "5001-5010:5001-5010/udp"  # media streaming
+      - "8088:8088"
+      - "8188:8188"
+      - "5001-5005:5001-5005/udp"
+    volumes:
+      - recordings:/opt/janus/share/janus/recordings
     restart: unless-stopped
 
-
+volumes:
+  recordings:
+    driver: local

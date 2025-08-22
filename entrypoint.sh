@@ -2,7 +2,7 @@
 set -e
 
 # Auto-detect public IP
-PUBLIC_IP=127.0.0.1
+PUBLIC_IP=127.0.01
 echo "Using PUBLIC_IP: $PUBLIC_IP"
 
 # Start nginx as a daemon (background)
