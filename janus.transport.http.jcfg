@@ -15,9 +15,9 @@ general: {
 	port = 8088						# Web server HTTP port
 	#interface = "eth0"				# Whether we should bind this server to a specific interface only
 	#ip = "192.168.0.1"				# Whether we should bind this server to a specific IP address (v4 or v6) only
-	https = true					# Whether to enable HTTPS (default=false)
+	https = false					# Whether to enable HTTPS (default=false)
 	secure_port = 8089				# Web server HTTPS port, if enabled
-	secure_interface = "0.0.0.0"		# Whether we should bind this server to a specific interface only
+	#secure_interface = "0.0.0.0"		# Whether we should bind this server to a specific interface only
 	#secure_ip = "192.168.0.1"		# Whether we should bind this server to a specific IP address (v4 or v6) only
 	#acl = "127.,192.168.0."		# Only allow requests coming from this comma separated list of addresses
 	#acl_forwarded = true			# Whether we should check the X-Forwarded-For header too for the ACL
@@ -71,8 +71,8 @@ cors: {
 # You can also disable insecure protocols and ciphers by configuring the
 # 'ciphers' property accordingly (no limitation by default).
 certificates: {
-	cert_pem = "/var/www/http/combined_certificate.pem"
-	cert_key = "/var/www/http/aioceaneye.key"
+	cert_pem = "/etc/nginx/cert/combined_certificate.pem"
+	cert_key = "/etc/nginx/cert/aioceaneye.key"
 	cert_pwd = "없음"
 	#ciphers = "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256"
 }

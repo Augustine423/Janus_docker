@@ -31,7 +31,12 @@ general: {
 }
 
 certificates: {
+	cert_pem = "/etc/nginx/cert/combined_certificate.pem"
+	cert_key = "/etc/nginx/cert/aioceaneye.key"
+	cert_pwd = "없음"
+	#ciphers = "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256"
 }
+
 
 media: {
 }
@@ -43,7 +48,7 @@ nat: {
         full_trickle = true
         ice_lite = true
         ignore_mdns = true
-        nat_1_1_mapping = "0.0.0.0"
+        nat_1_1_mapping = "auto"
 }
 
 plugins: {

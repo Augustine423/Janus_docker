@@ -57,9 +57,9 @@ RUN apt-get update && apt-get install -y \
 COPY --from=builder /opt/janus /opt/janus
 
 # Setup janus folders
-RUN mkdir -p /opt/janus/recordings && \
-    chmod 755 /opt/janus/recordings && \
-    chown root:root /opt/janus/recordings
+RUN mkdir -p /opt/janus/share/janus/recordings && \
+    chmod 755 /opt/janus/share/janus/recordings && \
+    chown root:root /opt/janus/share/janus/recordings
 
 # Copy Janus configs
 COPY janus.jcfg /opt/janus/etc/janus/janus.jcfg
@@ -75,7 +75,7 @@ COPY aioceaneye.key /etc/nginx/cert/privkey.pem
 
 # Minimal TLS config for nginx (keeps default nginx.conf)
 RUN rm -f /etc/nginx/sites-enabled/default
-COPY nginx-default.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy demo frontend files
 RUN cp -r /opt/janus/share/janus/html/* /usr/share/nginx/html/

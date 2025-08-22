@@ -9,7 +9,7 @@ services:
       - "80:80"
       - "8088:8088"
       - "8188:8188"
-      - "5001-5005:5001-5005/udp"
+      - "5001-5300:5001-5300/udp"
     volumes:
       - recordings:/opt/janus/share/janus/recordings
     restart: unless-stopped
