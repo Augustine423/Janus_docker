@@ -1,13 +1,13 @@
+
 services:
   janus:
-    image: kyawzayarsoe/janus:latest
-    # network_mode: "host"
+    image: kyawzayarsoe/janus:certv1.0
     environment:
-      - PUBLIC_IP=localhost
+      - PUBLIC_IP=3.39.219.71   # Replace with your actual public IP
+    network_mode: "host"
     volumes:
-      - recordings:/opt/janus/share/recordings
+      - recordings:/opt/janus/share/janus/recordings
     restart: unless-stopped
 
 volumes:
   recordings:
-

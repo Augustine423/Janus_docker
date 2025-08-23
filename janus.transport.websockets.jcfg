@@ -2,7 +2,8 @@ general: {
         json = "indented"
         ws = true
         ws_port = 8188
-        wss = false
+        wss = true
+	wss_port = 8989
 }
 
 admin: {
