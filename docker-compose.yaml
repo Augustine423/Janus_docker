@@ -1,15 +1,13 @@
 services:
   janus:
     build:
-     context: .
-     dockerfile: Dockerfile
-
-    # image: kyawzayarsoe/janus:certv1.0
+      context: .
+      dockerfile: Dockerfile
     environment:
-      - PUBLIC_IP=3.39.219.71   # Replace with your actual public IP
-    network_mode: "host"
+      - PUBLIC_IP=localhost
+    network_mode: "host"  
     volumes:
-      - recordings:/opt/janus/share/janus/recordings
+      - recordings:/opt/janus/share/recordings
     restart: unless-stopped
 
 volumes:

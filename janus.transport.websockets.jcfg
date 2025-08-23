@@ -1,23 +1,51 @@
+# WebSockets configuration
 general: {
-        json = "indented"
-        ws = true
-        ws_port = 8188
-        wss = true
-	wss_port = 8989
+    events = true
+    json = "indented"
+    #pingpong_trigger = 30
+    #pingpong_timeout = 10
+
+    ws = true                       # Enable WebSockets API
+    ws_port = 8188                  # WebSockets server port
+    wss = true                      # Enable secure WebSockets
+    wss_port = 8989                 # Secure WebSockets port
+    #ws_interface = "eth0"
+    #ws_ip = "192.168.0.1"
+    #ws_unix = "/run/ws.sock"
+    #wss_interface = "eth0"
+    #wss_ip = "192.168.0.1"
+    #wss_unix = "/run/wss.sock"
+    #ws_logging = "err,warn"
+    #ws_acl = "127.,192.168.0."
+    #ws_acl_forwarded = true
 }
 
+# Admin WebSockets configuration
 admin: {
-        admin_ws = false
-        admin_ws_port = 7188
-        admin_wss = false
+    admin_ws = true                 # Enable Admin API WebSockets
+    admin_ws_port = 7188            # Admin WebSockets port
+    admin_wss = true                # Enable Admin API secure WebSockets
+    admin_wss_port = 7989           # Admin secure WebSockets port
+    #admin_ws_interface = "eth0"
+    #admin_ws_ip = "192.168.0.1"
+    #admin_ws_unix = "/run/aws.sock"
+    #admin_wss_interface = "eth0"
+    #admin_wss_ip = "192.168.0.1"
+    #admin_wss_unix = "/run/awss.sock"
+    #admin_ws_acl = "127.,192.168.0."
+    #admin_ws_acl_forwarded = true
 }
 
+# CORS configuration (optional - same as above)
 cors: {
+    #allow_origin = "http://yourdomain.com"
+    #enforce_cors = true
 }
 
+# Certificate configuration (same certificates for WSS)
 certificates: {
-	cert_pem = "/etc/nginx/cert/tueyena.pem"
-	cert_key = "/etc/nginx/cert/tueyena.key"
-	cert_pwd = "mdt2025"
-	#ciphers = "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256"
+    cert_pem = "/etc/nginx/cert/tueyena.pem"
+    cert_key = "/etc/nginx/cert/tueyena.key"
+    cert_pwd = "mdt2025"
+    #ciphers = "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256"
 }

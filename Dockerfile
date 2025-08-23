@@ -39,13 +39,12 @@ RUN git clone https://github.com/meetecho/janus-gateway.git /janus && \
     make -j$(nproc) && make install && make configs && \
     strip /opt/janus/bin/janus /opt/janus/bin/janus-* || true
 
-
 # ---- Stage 2: Runtime Image ----
 FROM debian:bullseye-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Minimal runtime deps + nginx
+# Minimal runtime deps only
 RUN apt-get update && apt-get install -y \
     libmicrohttpd12 libjansson4 libssl1.1 libsrtp2-1 \
     libglib2.0-0 libopus0 libogg0 libcurl4 \
@@ -53,38 +52,35 @@ RUN apt-get update && apt-get install -y \
     nginx curl && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Copy built Janus
+# Copy built Janus from builder
 COPY --from=builder /opt/janus /opt/janus
 
 # Setup janus folders
-RUN mkdir -p /opt/janus/share/janus/recordings && \
-    chmod 755 /opt/janus/share/janus/recordings && \
-    chown root:root /opt/janus/share/janus/recordings
+RUN mkdir -p /opt/janus/recordings && \
+    chmod 755 /opt/janus/recordings && \
+    chown root:root /opt/janus/recordings
 
-# Copy Janus configs
+# Copy configuration files
 COPY janus.jcfg /opt/janus/etc/janus/janus.jcfg
 COPY janus.plugin.videoroom.jcfg /opt/janus/etc/janus/janus.plugin.videoroom.jcfg
 COPY janus.transport.pfunix.jcfg /opt/janus/etc/janus/janus.transport.pfunix.jcfg
 COPY janus.transport.websockets.jcfg /opt/janus/etc/janus/janus.transport.websockets.jcfg
 COPY janus.plugin.streaming.jcfg /opt/janus/etc/janus/janus.plugin.streaming.jcfg
 COPY janus.transport.http.jcfg /opt/janus/etc/janus/janus.transport.http.jcfg
-
-# Copy SSL certs
 COPY tueyena.pem /etc/nginx/cert/tueyena.pem
 COPY tueyena.key /etc/nginx/cert/tueyena.key
+COPY nginx.conf /etc/nginx/nginx.conf
+# Copy demo files to nginx web root
+RUN cp -r /opt/janus/share/janus/html/* /var/www/html/
 
-# Minimal TLS config for nginx (keeps default nginx.conf)
-RUN rm -f /etc/nginx/sites-enabled/default
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Copy demo frontend files
-RUN cp -r /opt/janus/share/janus/html/* /usr/share/nginx/html/
-
-# Entrypoint
+# Add entrypoint and post-processing script
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-EXPOSE 80 443 8088 8188 8989 5001-5500/udp
 
+# Expose necessary ports
+EXPOSE 80 443 8088 8089 8188 8989 7088 7889 7188 7989 5001-5300/udp
+
+# Set entrypoint
 ENTRYPOINT ["/entrypoint.sh"]
 CMD []
