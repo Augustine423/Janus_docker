@@ -70,8 +70,8 @@ COPY janus.plugin.streaming.jcfg /opt/janus/etc/janus/janus.plugin.streaming.jcf
 COPY janus.transport.http.jcfg /opt/janus/etc/janus/janus.transport.http.jcfg
 
 # Copy SSL certs
-COPY combined_certificate.pem /etc/nginx/cert/combined_certificate.pem
-COPY aioceaneye.key /etc/nginx/cert/aioceaneye.key
+COPY tueyena.pem /etc/nginx/cert/tueyena.pem
+COPY tueyena.key /etc/nginx/cert/tueyena.key
 
 # Minimal TLS config for nginx (keeps default nginx.conf)
 RUN rm -f /etc/nginx/sites-enabled/default

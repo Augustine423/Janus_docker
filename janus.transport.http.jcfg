@@ -71,8 +71,8 @@ cors: {
 # You can also disable insecure protocols and ciphers by configuring the
 # 'ciphers' property accordingly (no limitation by default).
 certificates: {
-	cert_pem = "/etc/nginx/cert/combined_certificate.pem"
-	cert_key = "/etc/nginx/cert/aioceaneye.key"
-	cert_pwd = "없음"
+	cert_pem = "/etc/nginx/cert/tueyena.pem"
+	cert_key = "/etc/nginx/cert/tueyena.key"
+	cert_pwd = "mdt2025"
 	#ciphers = "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256"
 }
