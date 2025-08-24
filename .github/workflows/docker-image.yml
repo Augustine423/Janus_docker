@@ -24,7 +24,13 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+  
+      - name: Write TLS certs from secrets
+        run: |
+          echo "${{ secrets.CERT_PEM }}" > tueyena.pem
+          echo "${{ secrets.CERT_KEY }}" > tueyena.key
 
+      
       - name: Build and push multi-arch image
         run: |
           docker buildx build \
