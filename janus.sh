@@ -1,0 +1,5553 @@
+#!/bin/bash
+
+# Exit on any error
+set -e
+
+# Auto-detect public IP of EC2
+PUBLIC_IP=$(curl -s https://api.ipify.org || echo "127.0.0.1")
+INSTALL_DIR="/home/ubuntu"
+
+# Function to check if a port is in use
+check_port() {
+    local port=$1
+    if sudo netstat -tuln | grep -q ":${port}\b"; then
+        echo "Error: Port $port is already in use."
+        exit 1
+    fi
+}
+
+# Step 1: Update the system
+echo "Updating system..."
+sudo apt update && sudo apt upgrade -y
+
+# Step 2: Install dependencies
+echo "Installing dependencies..."
+sudo apt install -y \
+    build-essential \
+    git \
+    cmake \
+    pkg-config \
+    automake \
+    libtool \
+    gengetopt \
+    make \
+    gcc \
+    g++ \
+    nginx \
+    libmicrohttpd-dev \
+    libjansson-dev \
+    libssl-dev \
+    libsrtp2-dev \
+    libsofia-sip-ua-dev \
+    libglib2.0-dev \
+    libopus-dev \
+    libogg-dev \
+    libcurl4-openssl-dev \
+    liblua5.3-dev \
+    libconfig-dev \
+    libnice-dev \
+    libwebsockets-dev \
+    libspeexdsp-dev \
+    libavutil-dev \
+    libavcodec-dev \
+    libavformat-dev \
+    ffmpeg
+
+# Step 3: Install usrsctp
+echo "Installing usrsctp..."
+cd $INSTALL_DIR
+if [ ! -d "usrsctp" ]; then
+    git clone https://github.com/sctplab/usrsctp.git || { echo "Failed to clone usrsctp"; exit 1; }
+fi
+cd usrsctp
+./bootstrap
+./configure
+make && sudo make install
+sudo ldconfig
+cd ..
+
+# Step 4: Install libsrtp from source
+echo "Installing libsrtp..."
+wget https://github.com/cisco/libsrtp/archive/v2.5.0.tar.gz -O libsrtp-2.5.0.tar.gz || { echo "Failed to download libsrtp"; exit 1; }
+tar xfv libsrtp-2.5.0.tar.gz
+cd libsrtp-2.5.0
+./configure --prefix=/usr
+make && sudo make install
+sudo ldconfig
+cd ..
+
+# Step 5: Install Janus Gateway
+echo "Installing Janus Gateway..."
+if [ ! -d "janus-gateway" ]; then
+    git clone https://github.com/meetecho/janus-gateway.git || { echo "Failed to clone janus-gateway"; exit 1; }
+fi
+cd janus-gateway
+sh autogen.sh
+./configure --prefix=/opt/janus \
+    --enable-websockets \
+    --enable-libsrtp2 \
+    --enable-post-processing \
+    --enable-recordings
+make
+sudo make install
+sudo make configs
+
+# Step 6: Ensure logger plugins folder exists and has correct permissions
+echo "Ensuring logger plugins folder exists..."
+sudo mkdir -p /opt/janus/lib/janus/loggers
+sudo chmod 755 /opt/janus/lib/janus/loggers
+sudo chown root:root /opt/janus/lib/janus/loggers
+
+# Step 6.1: Create recordings directory and set permissions
+echo "Creating recordings directory..."
+sudo mkdir -p /opt/janus/recordings
+sudo chmod 755 /opt/janus/recordings
+sudo chown root:root /opt/janus/recordings
+
+# Step 7: Apply custom Janus core configuration
+echo "Applying custom Janus core configuration..."
+cat <<EOF | sudo tee /opt/janus/etc/janus/janus.jcfg > /dev/null
+general: {
+    admin_key = "supersecret"
+    events = true
+    string_ids = false
+}
+
+multistream-001: {
+    type = "rtp"
+    id = 1001
+    description = "5001"
+    media = (
+        {
+            type = "video"
+            mid = "v001"
+            label = "5001"
+            port = 5001
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5001-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-002: {
+    type = "rtp"
+    id = 1002
+    description = "5002"
+    media = (
+        {
+            type = "video"
+            mid = "v002"
+            label = "5002"
+            port = 5002
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5002-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-003: {
+    type = "rtp"
+    id = 1003
+    description = "5003"
+    media = (
+        {
+            type = "video"
+            mid = "v003"
+            label = "5003"
+            port = 5003
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5003-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-004: {
+    type = "rtp"
+    id = 1004
+    description = "5004"
+    media = (
+        {
+            type = "video"
+            mid = "v004"
+            label = "5004"
+            port = 5004
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5004-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-005: {
+    type = "rtp"
+    id = 1005
+    description = "5005"
+    media = (
+        {
+            type = "video"
+            mid = "v005"
+            label = "5005"
+            port = 5005
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5005-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-006: {
+    type = "rtp"
+    id = 1006
+    description = "5006"
+    media = (
+        {
+            type = "video"
+            mid = "v006"
+            label = "5006"
+            port = 5006
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5006-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-007: {
+    type = "rtp"
+    id = 1007
+    description = "5007"
+    media = (
+        {
+            type = "video"
+            mid = "v007"
+            label = "5007"
+            port = 5007
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5007-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-008: {
+    type = "rtp"
+    id = 1008
+    description = "5008"
+    media = (
+        {
+            type = "video"
+            mid = "v008"
+            label = "5008"
+            port = 5008
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5008-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-009: {
+    type = "rtp"
+    id = 1009
+    description = "5009"
+    media = (
+        {
+            type = "video"
+            mid = "v009"
+            label = "5009"
+            port = 5009
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5009-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-010: {
+    type = "rtp"
+    id = 1010
+    description = "5010"
+    media = (
+        {
+            type = "video"
+            mid = "v010"
+            label = "5010"
+            port = 5010
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5010-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-011: {
+    type = "rtp"
+    id = 1011
+    description = "5011"
+    media = (
+        {
+            type = "video"
+            mid = "v011"
+            label = "5011"
+            port = 5011
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5011-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-012: {
+    type = "rtp"
+    id = 1012
+    description = "5012"
+    media = (
+        {
+            type = "video"
+            mid = "v012"
+            label = "5012"
+            port = 5012
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5012-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-013: {
+    type = "rtp"
+    id = 1013
+    description = "5013"
+    media = (
+        {
+            type = "video"
+            mid = "v013"
+            label = "5013"
+            port = 5013
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5013-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-014: {
+    type = "rtp"
+    id = 1014
+    description = "5014"
+    media = (
+        {
+            type = "video"
+            mid = "v014"
+            label = "5014"
+            port = 5014
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5014-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-015: {
+    type = "rtp"
+    id = 1015
+    description = "5015"
+    media = (
+        {
+            type = "video"
+            mid = "v015"
+            label = "5015"
+            port = 5015
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5015-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-016: {
+    type = "rtp"
+    id = 1016
+    description = "5016"
+    media = (
+        {
+            type = "video"
+            mid = "v016"
+            label = "5016"
+            port = 5016
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5016-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-017: {
+    type = "rtp"
+    id = 1017
+    description = "5017"
+    media = (
+        {
+            type = "video"
+            mid = "v017"
+            label = "5017"
+            port = 5017
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5017-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-018: {
+    type = "rtp"
+    id = 1018
+    description = "5018"
+    media = (
+        {
+            type = "video"
+            mid = "v018"
+            label = "5018"
+            port = 5018
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5018-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-019: {
+    type = "rtp"
+    id = 1019
+    description = "5019"
+    media = (
+        {
+            type = "video"
+            mid = "v019"
+            label = "5019"
+            port = 5019
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5019-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-020: {
+    type = "rtp"
+    id = 1020
+    description = "5020"
+    media = (
+        {
+            type = "video"
+            mid = "v020"
+            label = "5020"
+            port = 5020
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5020-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-021: {
+    type = "rtp"
+    id = 1021
+    description = "5021"
+    media = (
+        {
+            type = "video"
+            mid = "v021"
+            label = "5021"
+            port = 5021
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5021-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-022: {
+    type = "rtp"
+    id = 1022
+    description = "5022"
+    media = (
+        {
+            type = "video"
+            mid = "v022"
+            label = "5022"
+            port = 5022
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5022-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-023: {
+    type = "rtp"
+    id = 1023
+    description = "5023"
+    media = (
+        {
+            type = "video"
+            mid = "v023"
+            label = "5023"
+            port = 5023
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5023-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-024: {
+    type = "rtp"
+    id = 1024
+    description = "5024"
+    media = (
+        {
+            type = "video"
+            mid = "v024"
+            label = "5024"
+            port = 5024
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5024-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-025: {
+    type = "rtp"
+    id = 1025
+    description = "5025"
+    media = (
+        {
+            type = "video"
+            mid = "v025"
+            label = "5025"
+            port = 5025
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5025-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-026: {
+    type = "rtp"
+    id = 1026
+    description = "5026"
+    media = (
+        {
+            type = "video"
+            mid = "v026"
+            label = "5026"
+            port = 5026
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5026-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-027: {
+    type = "rtp"
+    id = 1027
+    description = "5027"
+    media = (
+        {
+            type = "video"
+            mid = "v027"
+            label = "5027"
+            port = 5027
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5027-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-028: {
+    type = "rtp"
+    id = 1028
+    description = "5028"
+    media = (
+        {
+            type = "video"
+            mid = "v028"
+            label = "5028"
+            port = 5028
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5028-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-029: {
+    type = "rtp"
+    id = 1029
+    description = "5029"
+    media = (
+        {
+            type = "video"
+            mid = "v029"
+            label = "5029"
+            port = 5029
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5029-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-030: {
+    type = "rtp"
+    id = 1030
+    description = "5030"
+    media = (
+        {
+            type = "video"
+            mid = "v030"
+            label = "5030"
+            port = 5030
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5030-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-031: {
+    type = "rtp"
+    id = 1031
+    description = "5031"
+    media = (
+        {
+            type = "video"
+            mid = "v031"
+            label = "5031"
+            port = 5031
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5031-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-032: {
+    type = "rtp"
+    id = 1032
+    description = "5032"
+    media = (
+        {
+            type = "video"
+            mid = "v032"
+            label = "5032"
+            port = 5032
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5032-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-033: {
+    type = "rtp"
+    id = 1033
+    description = "5033"
+    media = (
+        {
+            type = "video"
+            mid = "v033"
+            label = "5033"
+            port = 5033
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5033-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-034: {
+    type = "rtp"
+    id = 1034
+    description = "5034"
+    media = (
+        {
+            type = "video"
+            mid = "v034"
+            label = "5034"
+            port = 5034
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5034-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-035: {
+    type = "rtp"
+    id = 1035
+    description = "5035"
+    media = (
+        {
+            type = "video"
+            mid = "v035"
+            label = "5035"
+            port = 5035
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5035-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-036: {
+    type = "rtp"
+    id = 1036
+    description = "5036"
+    media = (
+        {
+            type = "video"
+            mid = "v036"
+            label = "5036"
+            port = 5036
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5036-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-037: {
+    type = "rtp"
+    id = 1037
+    description = "5037"
+    media = (
+        {
+            type = "video"
+            mid = "v037"
+            label = "5037"
+            port = 5037
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5037-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-038: {
+    type = "rtp"
+    id = 1038
+    description = "5038"
+    media = (
+        {
+            type = "video"
+            mid = "v038"
+            label = "5038"
+            port = 5038
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5038-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-039: {
+    type = "rtp"
+    id = 1039
+    description = "5039"
+    media = (
+        {
+            type = "video"
+            mid = "v039"
+            label = "5039"
+            port = 5039
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5039-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-040: {
+    type = "rtp"
+    id = 1040
+    description = "5040"
+    media = (
+        {
+            type = "video"
+            mid = "v040"
+            label = "5040"
+            port = 5040
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5040-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-041: {
+    type = "rtp"
+    id = 1041
+    description = "5041"
+    media = (
+        {
+            type = "video"
+            mid = "v041"
+            label = "5041"
+            port = 5041
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5041-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-042: {
+    type = "rtp"
+    id = 1042
+    description = "5042"
+    media = (
+        {
+            type = "video"
+            mid = "v042"
+            label = "5042"
+            port = 5042
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5042-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-043: {
+    type = "rtp"
+    id = 1043
+    description = "5043"
+    media = (
+        {
+            type = "video"
+            mid = "v043"
+            label = "5043"
+            port = 5043
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5043-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-044: {
+    type = "rtp"
+    id = 1044
+    description = "5044"
+    media = (
+        {
+            type = "video"
+            mid = "v044"
+            label = "5044"
+            port = 5044
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5044-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-045: {
+    type = "rtp"
+    id = 1045
+    description = "5045"
+    media = (
+        {
+            type = "video"
+            mid = "v045"
+            label = "5045"
+            port = 5045
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5045-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-046: {
+    type = "rtp"
+    id = 1046
+    description = "5046"
+    media = (
+        {
+            type = "video"
+            mid = "v046"
+            label = "5046"
+            port = 5046
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5046-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-047: {
+    type = "rtp"
+    id = 1047
+    description = "5047"
+    media = (
+        {
+            type = "video"
+            mid = "v047"
+            label = "5047"
+            port = 5047
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5047-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-048: {
+    type = "rtp"
+    id = 1048
+    description = "5048"
+    media = (
+        {
+            type = "video"
+            mid = "v048"
+            label = "5048"
+            port = 5048
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5048-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-049: {
+    type = "rtp"
+    id = 1049
+    description = "5049"
+    media = (
+        {
+            type = "video"
+            mid = "v049"
+            label = "5049"
+            port = 5049
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5049-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-050: {
+    type = "rtp"
+    id = 1050
+    description = "5050"
+    media = (
+        {
+            type = "video"
+            mid = "v050"
+            label = "5050"
+            port = 5050
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5050-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-051: {
+    type = "rtp"
+    id = 1051
+    description = "5051"
+    media = (
+        {
+            type = "video"
+            mid = "v051"
+            label = "5051"
+            port = 5051
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5051-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-052: {
+    type = "rtp"
+    id = 1052
+    description = "5052"
+    media = (
+        {
+            type = "video"
+            mid = "v052"
+            label = "5052"
+            port = 5052
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5052-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-053: {
+    type = "rtp"
+    id = 1053
+    description = "5053"
+    media = (
+        {
+            type = "video"
+            mid = "v053"
+            label = "5053"
+            port = 5053
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5053-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-054: {
+    type = "rtp"
+    id = 1054
+    description = "5054"
+    media = (
+        {
+            type = "video"
+            mid = "v054"
+            label = "5054"
+            port = 5054
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5054-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-055: {
+    type = "rtp"
+    id = 1055
+    description = "5055"
+    media = (
+        {
+            type = "video"
+            mid = "v055"
+            label = "5055"
+            port = 5055
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5055-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-056: {
+    type = "rtp"
+    id = 1056
+    description = "5056"
+    media = (
+        {
+            type = "video"
+            mid = "v056"
+            label = "5056"
+            port = 5056
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5056-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-057: {
+    type = "rtp"
+    id = 1057
+    description = "5057"
+    media = (
+        {
+            type = "video"
+            mid = "v057"
+            label = "5057"
+            port = 5057
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5057-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-058: {
+    type = "rtp"
+    id = 1058
+    description = "5058"
+    media = (
+        {
+            type = "video"
+            mid = "v058"
+            label = "5058"
+            port = 5058
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5058-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-059: {
+    type = "rtp"
+    id = 1059
+    description = "5059"
+    media = (
+        {
+            type = "video"
+            mid = "v059"
+            label = "5059"
+            port = 5059
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5059-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-060: {
+    type = "rtp"
+    id = 1060
+    description = "5060"
+    media = (
+        {
+            type = "video"
+            mid = "v060"
+            label = "5060"
+            port = 5060
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5060-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-061: {
+    type = "rtp"
+    id = 1061
+    description = "5061"
+    media = (
+        {
+            type = "video"
+            mid = "v061"
+            label = "5061"
+            port = 5061
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5061-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-062: {
+    type = "rtp"
+    id = 1062
+    description = "5062"
+    media = (
+        {
+            type = "video"
+            mid = "v062"
+            label = "5062"
+            port = 5062
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5062-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-063: {
+    type = "rtp"
+    id = 1063
+    description = "5063"
+    media = (
+        {
+            type = "video"
+            mid = "v063"
+            label = "5063"
+            port = 5063
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5063-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-064: {
+    type = "rtp"
+    id = 1064
+    description = "5064"
+    media = (
+        {
+            type = "video"
+            mid = "v064"
+            label = "5064"
+            port = 5064
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5064-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-065: {
+    type = "rtp"
+    id = 1065
+    description = "5065"
+    media = (
+        {
+            type = "video"
+            mid = "v065"
+            label = "5065"
+            port = 5065
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5065-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-066: {
+    type = "rtp"
+    id = 1066
+    description = "5066"
+    media = (
+        {
+            type = "video"
+            mid = "v066"
+            label = "5066"
+            port = 5066
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5066-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-067: {
+    type = "rtp"
+    id = 1067
+    description = "5067"
+    media = (
+        {
+            type = "video"
+            mid = "v067"
+            label = "5067"
+            port = 5067
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5067-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-068: {
+    type = "rtp"
+    id = 1068
+    description = "5068"
+    media = (
+        {
+            type = "video"
+            mid = "v068"
+            label = "5068"
+            port = 5068
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5068-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-069: {
+    type = "rtp"
+    id = 1069
+    description = "5069"
+    media = (
+        {
+            type = "video"
+            mid = "v069"
+            label = "5069"
+            port = 5069
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5069-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-070: {
+    type = "rtp"
+    id = 1070
+    description = "5070"
+    media = (
+        {
+            type = "video"
+            mid = "v070"
+            label = "5070"
+            port = 5070
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5070-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-071: {
+    type = "rtp"
+    id = 1071
+    description = "5071"
+    media = (
+        {
+            type = "video"
+            mid = "v071"
+            label = "5071"
+            port = 5071
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5071-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-072: {
+    type = "rtp"
+    id = 1072
+    description = "5072"
+    media = (
+        {
+            type = "video"
+            mid = "v072"
+            label = "5072"
+            port = 5072
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5072-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-073: {
+    type = "rtp"
+    id = 1073
+    description = "5073"
+    media = (
+        {
+            type = "video"
+            mid = "v073"
+            label = "5073"
+            port = 5073
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5073-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-074: {
+    type = "rtp"
+    id = 1074
+    description = "5074"
+    media = (
+        {
+            type = "video"
+            mid = "v074"
+            label = "5074"
+            port = 5074
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5074-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-075: {
+    type = "rtp"
+    id = 1075
+    description = "5075"
+    media = (
+        {
+            type = "video"
+            mid = "v075"
+            label = "5075"
+            port = 5075
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5075-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-076: {
+    type = "rtp"
+    id = 1076
+    description = "5076"
+    media = (
+        {
+            type = "video"
+            mid = "v076"
+            label = "5076"
+            port = 5076
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5076-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-077: {
+    type = "rtp"
+    id = 1077
+    description = "5077"
+    media = (
+        {
+            type = "video"
+            mid = "v077"
+            label = "5077"
+            port = 5077
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5077-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-078: {
+    type = "rtp"
+    id = 1078
+    description = "5078"
+    media = (
+        {
+            type = "video"
+            mid = "v078"
+            label = "5078"
+            port = 5078
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5078-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-079: {
+    type = "rtp"
+    id = 1079
+    description = "5079"
+    media = (
+        {
+            type = "video"
+            mid = "v079"
+            label = "5079"
+            port = 5079
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5079-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-080: {
+    type = "rtp"
+    id = 1080
+    description = "5080"
+    media = (
+        {
+            type = "video"
+            mid = "v080"
+            label = "5080"
+            port = 5080
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5080-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-081: {
+    type = "rtp"
+    id = 1081
+    description = "5081"
+    media = (
+        {
+            type = "video"
+            mid = "v081"
+            label = "5081"
+            port = 5081
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5081-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-082: {
+    type = "rtp"
+    id = 1082
+    description = "5082"
+    media = (
+        {
+            type = "video"
+            mid = "v082"
+            label = "5082"
+            port = 5082
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5082-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-083: {
+    type = "rtp"
+    id = 1083
+    description = "5083"
+    media = (
+        {
+            type = "video"
+            mid = "v083"
+            label = "5083"
+            port = 5083
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5083-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-084: {
+    type = "rtp"
+    id = 1084
+    description = "5084"
+    media = (
+        {
+            type = "video"
+            mid = "v084"
+            label = "5084"
+            port = 5084
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5084-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-085: {
+    type = "rtp"
+    id = 1085
+    description = "5085"
+    media = (
+        {
+            type = "video"
+            mid = "v085"
+            label = "5085"
+            port = 5085
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5085-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-086: {
+    type = "rtp"
+    id = 1086
+    description = "5086"
+    media = (
+        {
+            type = "video"
+            mid = "v086"
+            label = "5086"
+            port = 5086
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5086-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-087: {
+    type = "rtp"
+    id = 1087
+    description = "5087"
+    media = (
+        {
+            type = "video"
+            mid = "v087"
+            label = "5087"
+            port = 5087
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5087-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-088: {
+    type = "rtp"
+    id = 1088
+    description = "5088"
+    media = (
+        {
+            type = "video"
+            mid = "v088"
+            label = "5088"
+            port = 5088
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5088-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-089: {
+    type = "rtp"
+    id = 1089
+    description = "5089"
+    media = (
+        {
+            type = "video"
+            mid = "v089"
+            label = "5089"
+            port = 5089
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5089-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-090: {
+    type = "rtp"
+    id = 1090
+    description = "5090"
+    media = (
+        {
+            type = "video"
+            mid = "v090"
+            label = "5090"
+            port = 5090
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5090-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-091: {
+    type = "rtp"
+    id = 1091
+    description = "5091"
+    media = (
+        {
+            type = "video"
+            mid = "v091"
+            label = "5091"
+            port = 5091
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5091-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-092: {
+    type = "rtp"
+    id = 1092
+    description = "5092"
+    media = (
+        {
+            type = "video"
+            mid = "v092"
+            label = "5092"
+            port = 5092
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5092-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-093: {
+    type = "rtp"
+    id = 1093
+    description = "5093"
+    media = (
+        {
+            type = "video"
+            mid = "v093"
+            label = "5093"
+            port = 5093
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5093-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-094: {
+    type = "rtp"
+    id = 1094
+    description = "5094"
+    media = (
+        {
+            type = "video"
+            mid = "v094"
+            label = "5094"
+            port = 5094
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5094-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-095: {
+    type = "rtp"
+    id = 1095
+    description = "5095"
+    media = (
+        {
+            type = "video"
+            mid = "v095"
+            label = "5095"
+            port = 5095
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5095-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-096: {
+    type = "rtp"
+    id = 1096
+    description = "5096"
+    media = (
+        {
+            type = "video"
+            mid = "v096"
+            label = "5096"
+            port = 5096
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5096-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-097: {
+    type = "rtp"
+    id = 1097
+    description = "5097"
+    media = (
+        {
+            type = "video"
+            mid = "v097"
+            label = "5097"
+            port = 5097
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5097-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-098: {
+    type = "rtp"
+    id = 1098
+    description = "5098"
+    media = (
+        {
+            type = "video"
+            mid = "v098"
+            label = "5098"
+            port = 5098
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5098-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-099: {
+    type = "rtp"
+    id = 1099
+    description = "5099"
+    media = (
+        {
+            type = "video"
+            mid = "v099"
+            label = "5099"
+            port = 5099
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5099-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-100: {
+    type = "rtp"
+    id = 1100
+    description = "5100"
+    media = (
+        {
+            type = "video"
+            mid = "v100"
+            label = "5100"
+            port = 5100
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5100-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-101: {
+    type = "rtp"
+    id = 1101
+    description = "5101"
+    media = (
+        {
+            type = "video"
+            mid = "v101"
+            label = "5101"
+            port = 5101
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5101-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-102: {
+    type = "rtp"
+    id = 1102
+    description = "5102"
+    media = (
+        {
+            type = "video"
+            mid = "v102"
+            label = "5102"
+            port = 5102
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5102-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-103: {
+    type = "rtp"
+    id = 1103
+    description = "5103"
+    media = (
+        {
+            type = "video"
+            mid = "v103"
+            label = "5103"
+            port = 5103
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5103-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-104: {
+    type = "rtp"
+    id = 1104
+    description = "5104"
+    media = (
+        {
+            type = "video"
+            mid = "v104"
+            label = "5104"
+            port = 5104
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5104-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-105: {
+    type = "rtp"
+    id = 1105
+    description = "5105"
+    media = (
+        {
+            type = "video"
+            mid = "v105"
+            label = "5105"
+            port = 5105
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5105-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-106: {
+    type = "rtp"
+    id = 1106
+    description = "5106"
+    media = (
+        {
+            type = "video"
+            mid = "v106"
+            label = "5106"
+            port = 5106
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5106-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-107: {
+    type = "rtp"
+    id = 1107
+    description = "5107"
+    media = (
+        {
+            type = "video"
+            mid = "v107"
+            label = "5107"
+            port = 5107
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5107-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-108: {
+    type = "rtp"
+    id = 1108
+    description = "5108"
+    media = (
+        {
+            type = "video"
+            mid = "v108"
+            label = "5108"
+            port = 5108
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5108-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-109: {
+    type = "rtp"
+    id = 1109
+    description = "5109"
+    media = (
+        {
+            type = "video"
+            mid = "v109"
+            label = "5109"
+            port = 5109
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5109-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-110: {
+    type = "rtp"
+    id = 1110
+    description = "5110"
+    media = (
+        {
+            type = "video"
+            mid = "v110"
+            label = "5110"
+            port = 5110
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5110-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-111: {
+    type = "rtp"
+    id = 1111
+    description = "5111"
+    media = (
+        {
+            type = "video"
+            mid = "v111"
+            label = "5111"
+            port = 5111
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5111-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-112: {
+    type = "rtp"
+    id = 1112
+    description = "5112"
+    media = (
+        {
+            type = "video"
+            mid = "v112"
+            label = "5112"
+            port = 5112
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5112-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-113: {
+    type = "rtp"
+    id = 1113
+    description = "5113"
+    media = (
+        {
+            type = "video"
+            mid = "v113"
+            label = "5113"
+            port = 5113
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5113-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-114: {
+    type = "rtp"
+    id = 1114
+    description = "5114"
+    media = (
+        {
+            type = "video"
+            mid = "v114"
+            label = "5114"
+            port = 5114
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5114-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-115: {
+    type = "rtp"
+    id = 1115
+    description = "5115"
+    media = (
+        {
+            type = "video"
+            mid = "v115"
+            label = "5115"
+            port = 5115
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5115-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-116: {
+    type = "rtp"
+    id = 1116
+    description = "5116"
+    media = (
+        {
+            type = "video"
+            mid = "v116"
+            label = "5116"
+            port = 5116
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5116-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-117: {
+    type = "rtp"
+    id = 1117
+    description = "5117"
+    media = (
+        {
+            type = "video"
+            mid = "v117"
+            label = "5117"
+            port = 5117
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5117-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-118: {
+    type = "rtp"
+    id = 1118
+    description = "5118"
+    media = (
+        {
+            type = "video"
+            mid = "v118"
+            label = "5118"
+            port = 5118
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5118-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-119: {
+    type = "rtp"
+    id = 1119
+    description = "5119"
+    media = (
+        {
+            type = "video"
+            mid = "v119"
+            label = "5119"
+            port = 5119
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5119-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-120: {
+    type = "rtp"
+    id = 1120
+    description = "5120"
+    media = (
+        {
+            type = "video"
+            mid = "v120"
+            label = "5120"
+            port = 5120
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5120-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-121: {
+    type = "rtp"
+    id = 1121
+    description = "5121"
+    media = (
+        {
+            type = "video"
+            mid = "v121"
+            label = "5121"
+            port = 5121
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5121-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-122: {
+    type = "rtp"
+    id = 1122
+    description = "5122"
+    media = (
+        {
+            type = "video"
+            mid = "v122"
+            label = "5122"
+            port = 5122
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5122-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-123: {
+    type = "rtp"
+    id = 1123
+    description = "5123"
+    media = (
+        {
+            type = "video"
+            mid = "v123"
+            label = "5123"
+            port = 5123
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5123-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-124: {
+    type = "rtp"
+    id = 1124
+    description = "5124"
+    media = (
+        {
+            type = "video"
+            mid = "v124"
+            label = "5124"
+            port = 5124
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5124-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-125: {
+    type = "rtp"
+    id = 1125
+    description = "5125"
+    media = (
+        {
+            type = "video"
+            mid = "v125"
+            label = "5125"
+            port = 5125
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5125-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-126: {
+    type = "rtp"
+    id = 1126
+    description = "5126"
+    media = (
+        {
+            type = "video"
+            mid = "v126"
+            label = "5126"
+            port = 5126
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5126-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-127: {
+    type = "rtp"
+    id = 1127
+    description = "5127"
+    media = (
+        {
+            type = "video"
+            mid = "v127"
+            label = "5127"
+            port = 5127
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5127-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-128: {
+    type = "rtp"
+    id = 1128
+    description = "5128"
+    media = (
+        {
+            type = "video"
+            mid = "v128"
+            label = "5128"
+            port = 5128
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5128-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-129: {
+    type = "rtp"
+    id = 1129
+    description = "5129"
+    media = (
+        {
+            type = "video"
+            mid = "v129"
+            label = "5129"
+            port = 5129
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5129-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-130: {
+    type = "rtp"
+    id = 1130
+    description = "5130"
+    media = (
+        {
+            type = "video"
+            mid = "v130"
+            label = "5130"
+            port = 5130
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5130-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-131: {
+    type = "rtp"
+    id = 1131
+    description = "5131"
+    media = (
+        {
+            type = "video"
+            mid = "v131"
+            label = "5131"
+            port = 5131
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5131-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-132: {
+    type = "rtp"
+    id = 1132
+    description = "5132"
+    media = (
+        {
+            type = "video"
+            mid = "v132"
+            label = "5132"
+            port = 5132
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5132-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-133: {
+    type = "rtp"
+    id = 1133
+    description = "5133"
+    media = (
+        {
+            type = "video"
+            mid = "v133"
+            label = "5133"
+            port = 5133
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5133-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-134: {
+    type = "rtp"
+    id = 1134
+    description = "5134"
+    media = (
+        {
+            type = "video"
+            mid = "v134"
+            label = "5134"
+            port = 5134
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5134-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-135: {
+    type = "rtp"
+    id = 1135
+    description = "5135"
+    media = (
+        {
+            type = "video"
+            mid = "v135"
+            label = "5135"
+            port = 5135
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5135-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-136: {
+    type = "rtp"
+    id = 1136
+    description = "5136"
+    media = (
+        {
+            type = "video"
+            mid = "v136"
+            label = "5136"
+            port = 5136
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5136-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-137: {
+    type = "rtp"
+    id = 1137
+    description = "5137"
+    media = (
+        {
+            type = "video"
+            mid = "v137"
+            label = "5137"
+            port = 5137
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5137-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-138: {
+    type = "rtp"
+    id = 1138
+    description = "5138"
+    media = (
+        {
+            type = "video"
+            mid = "v138"
+            label = "5138"
+            port = 5138
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5138-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-139: {
+    type = "rtp"
+    id = 1139
+    description = "5139"
+    media = (
+        {
+            type = "video"
+            mid = "v139"
+            label = "5139"
+            port = 5139
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5139-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-140: {
+    type = "rtp"
+    id = 1140
+    description = "5140"
+    media = (
+        {
+            type = "video"
+            mid = "v140"
+            label = "5140"
+            port = 5140
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5140-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-141: {
+    type = "rtp"
+    id = 1141
+    description = "5141"
+    media = (
+        {
+            type = "video"
+            mid = "v141"
+            label = "5141"
+            port = 5141
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5141-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-142: {
+    type = "rtp"
+    id = 1142
+    description = "5142"
+    media = (
+        {
+            type = "video"
+            mid = "v142"
+            label = "5142"
+            port = 5142
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5142-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-143: {
+    type = "rtp"
+    id = 1143
+    description = "5143"
+    media = (
+        {
+            type = "video"
+            mid = "v143"
+            label = "5143"
+            port = 5143
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5143-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-144: {
+    type = "rtp"
+    id = 1144
+    description = "5144"
+    media = (
+        {
+            type = "video"
+            mid = "v144"
+            label = "5144"
+            port = 5144
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5144-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-145: {
+    type = "rtp"
+    id = 1145
+    description = "5145"
+    media = (
+        {
+            type = "video"
+            mid = "v145"
+            label = "5145"
+            port = 5145
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5145-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-146: {
+    type = "rtp"
+    id = 1146
+    description = "5146"
+    media = (
+        {
+            type = "video"
+            mid = "v146"
+            label = "5146"
+            port = 5146
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5146-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-147: {
+    type = "rtp"
+    id = 1147
+    description = "5147"
+    media = (
+        {
+            type = "video"
+            mid = "v147"
+            label = "5147"
+            port = 5147
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5147-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-148: {
+    type = "rtp"
+    id = 1148
+    description = "5148"
+    media = (
+        {
+            type = "video"
+            mid = "v148"
+            label = "5148"
+            port = 5148
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5148-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-149: {
+    type = "rtp"
+    id = 1149
+    description = "5149"
+    media = (
+        {
+            type = "video"
+            mid = "v149"
+            label = "5149"
+            port = 5149
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5149-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-150: {
+    type = "rtp"
+    id = 1150
+    description = "5150"
+    media = (
+        {
+            type = "video"
+            mid = "v150"
+            label = "5150"
+            port = 5150
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5150-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-151: {
+    type = "rtp"
+    id = 1151
+    description = "5151"
+    media = (
+        {
+            type = "video"
+            mid = "v151"
+            label = "5151"
+            port = 5151
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5151-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-152: {
+    type = "rtp"
+    id = 1152
+    description = "5152"
+    media = (
+        {
+            type = "video"
+            mid = "v152"
+            label = "5152"
+            port = 5152
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5152-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-153: {
+    type = "rtp"
+    id = 1153
+    description = "5153"
+    media = (
+        {
+            type = "video"
+            mid = "v153"
+            label = "5153"
+            port = 5153
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5153-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-154: {
+    type = "rtp"
+    id = 1154
+    description = "5154"
+    media = (
+        {
+            type = "video"
+            mid = "v154"
+            label = "5154"
+            port = 5154
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5154-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-155: {
+    type = "rtp"
+    id = 1155
+    description = "5155"
+    media = (
+        {
+            type = "video"
+            mid = "v155"
+            label = "5155"
+            port = 5155
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5155-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-156: {
+    type = "rtp"
+    id = 1156
+    description = "5156"
+    media = (
+        {
+            type = "video"
+            mid = "v156"
+            label = "5156"
+            port = 5156
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5156-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-157: {
+    type = "rtp"
+    id = 1157
+    description = "5157"
+    media = (
+        {
+            type = "video"
+            mid = "v157"
+            label = "5157"
+            port = 5157
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5157-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-158: {
+    type = "rtp"
+    id = 1158
+    description = "5158"
+    media = (
+        {
+            type = "video"
+            mid = "v158"
+            label = "5158"
+            port = 5158
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5158-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-159: {
+    type = "rtp"
+    id = 1159
+    description = "5159"
+    media = (
+        {
+            type = "video"
+            mid = "v159"
+            label = "5159"
+            port = 5159
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5159-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-160: {
+    type = "rtp"
+    id = 1160
+    description = "5160"
+    media = (
+        {
+            type = "video"
+            mid = "v160"
+            label = "5160"
+            port = 5160
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5160-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-161: {
+    type = "rtp"
+    id = 1161
+    description = "5161"
+    media = (
+        {
+            type = "video"
+            mid = "v161"
+            label = "5161"
+            port = 5161
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5161-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-162: {
+    type = "rtp"
+    id = 1162
+    description = "5162"
+    media = (
+        {
+            type = "video"
+            mid = "v162"
+            label = "5162"
+            port = 5162
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5162-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-163: {
+    type = "rtp"
+    id = 1163
+    description = "5163"
+    media = (
+        {
+            type = "video"
+            mid = "v163"
+            label = "5163"
+            port = 5163
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5163-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-164: {
+    type = "rtp"
+    id = 1164
+    description = "5164"
+    media = (
+        {
+            type = "video"
+            mid = "v164"
+            label = "5164"
+            port = 5164
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5164-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-165: {
+    type = "rtp"
+    id = 1165
+    description = "5165"
+    media = (
+        {
+            type = "video"
+            mid = "v165"
+            label = "5165"
+            port = 5165
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5165-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-166: {
+    type = "rtp"
+    id = 1166
+    description = "5166"
+    media = (
+        {
+            type = "video"
+            mid = "v166"
+            label = "5166"
+            port = 5166
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5166-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-167: {
+    type = "rtp"
+    id = 1167
+    description = "5167"
+    media = (
+        {
+            type = "video"
+            mid = "v167"
+            label = "5167"
+            port = 5167
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5167-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-168: {
+    type = "rtp"
+    id = 1168
+    description = "5168"
+    media = (
+        {
+            type = "video"
+            mid = "v168"
+            label = "5168"
+            port = 5168
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5168-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-169: {
+    type = "rtp"
+    id = 1169
+    description = "5169"
+    media = (
+        {
+            type = "video"
+            mid = "v169"
+            label = "5169"
+            port = 5169
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5169-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-170: {
+    type = "rtp"
+    id = 1170
+    description = "5170"
+    media = (
+        {
+            type = "video"
+            mid = "v170"
+            label = "5170"
+            port = 5170
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5170-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-171: {
+    type = "rtp"
+    id = 1171
+    description = "5171"
+    media = (
+        {
+            type = "video"
+            mid = "v171"
+            label = "5171"
+            port = 5171
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5171-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-172: {
+    type = "rtp"
+    id = 1172
+    description = "5172"
+    media = (
+        {
+            type = "video"
+            mid = "v172"
+            label = "5172"
+            port = 5172
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5172-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-173: {
+    type = "rtp"
+    id = 1173
+    description = "5173"
+    media = (
+        {
+            type = "video"
+            mid = "v173"
+            label = "5173"
+            port = 5173
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5173-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-174: {
+    type = "rtp"
+    id = 1174
+    description = "5174"
+    media = (
+        {
+            type = "video"
+            mid = "v174"
+            label = "5174"
+            port = 5174
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5174-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-175: {
+    type = "rtp"
+    id = 1175
+    description = "5175"
+    media = (
+        {
+            type = "video"
+            mid = "v175"
+            label = "5175"
+            port = 5175
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5175-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-176: {
+    type = "rtp"
+    id = 1176
+    description = "5176"
+    media = (
+        {
+            type = "video"
+            mid = "v176"
+            label = "5176"
+            port = 5176
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5176-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-177: {
+    type = "rtp"
+    id = 1177
+    description = "5177"
+    media = (
+        {
+            type = "video"
+            mid = "v177"
+            label = "5177"
+            port = 5177
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5177-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-178: {
+    type = "rtp"
+    id = 1178
+    description = "5178"
+    media = (
+        {
+            type = "video"
+            mid = "v178"
+            label = "5178"
+            port = 5178
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5178-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-179: {
+    type = "rtp"
+    id = 1179
+    description = "5179"
+    media = (
+        {
+            type = "video"
+            mid = "v179"
+            label = "5179"
+            port = 5179
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5179-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-180: {
+    type = "rtp"
+    id = 1180
+    description = "5180"
+    media = (
+        {
+            type = "video"
+            mid = "v180"
+            label = "5180"
+            port = 5180
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5180-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-181: {
+    type = "rtp"
+    id = 1181
+    description = "5181"
+    media = (
+        {
+            type = "video"
+            mid = "v181"
+            label = "5181"
+            port = 5181
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5181-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-182: {
+    type = "rtp"
+    id = 1182
+    description = "5182"
+    media = (
+        {
+            type = "video"
+            mid = "v182"
+            label = "5182"
+            port = 5182
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5182-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-183: {
+    type = "rtp"
+    id = 1183
+    description = "5183"
+    media = (
+        {
+            type = "video"
+            mid = "v183"
+            label = "5183"
+            port = 5183
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5183-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-184: {
+    type = "rtp"
+    id = 1184
+    description = "5184"
+    media = (
+        {
+            type = "video"
+            mid = "v184"
+            label = "5184"
+            port = 5184
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5184-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-185: {
+    type = "rtp"
+    id = 1185
+    description = "5185"
+    media = (
+        {
+            type = "video"
+            mid = "v185"
+            label = "5185"
+            port = 5185
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5185-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-186: {
+    type = "rtp"
+    id = 1186
+    description = "5186"
+    media = (
+        {
+            type = "video"
+            mid = "v186"
+            label = "5186"
+            port = 5186
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5186-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-187: {
+    type = "rtp"
+    id = 1187
+    description = "5187"
+    media = (
+        {
+            type = "video"
+            mid = "v187"
+            label = "5187"
+            port = 5187
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5187-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-188: {
+    type = "rtp"
+    id = 1188
+    description = "5188"
+    media = (
+        {
+            type = "video"
+            mid = "v188"
+            label = "5188"
+            port = 5188
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5188-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-189: {
+    type = "rtp"
+    id = 1189
+    description = "5189"
+    media = (
+        {
+            type = "video"
+            mid = "v189"
+            label = "5189"
+            port = 5189
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5189-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-190: {
+    type = "rtp"
+    id = 1190
+    description = "5190"
+    media = (
+        {
+            type = "video"
+            mid = "v190"
+            label = "5190"
+            port = 5190
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5190-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-191: {
+    type = "rtp"
+    id = 1191
+    description = "5191"
+    media = (
+        {
+            type = "video"
+            mid = "v191"
+            label = "5191"
+            port = 5191
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5191-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-192: {
+    type = "rtp"
+    id = 1192
+    description = "5192"
+    media = (
+        {
+            type = "video"
+            mid = "v192"
+            label = "5192"
+            port = 5192
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5192-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-193: {
+    type = "rtp"
+    id = 1193
+    description = "5193"
+    media = (
+        {
+            type = "video"
+            mid = "v193"
+            label = "5193"
+            port = 5193
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5193-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-194: {
+    type = "rtp"
+    id = 1194
+    description = "5194"
+    media = (
+        {
+            type = "video"
+            mid = "v194"
+            label = "5194"
+            port = 5194
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5194-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-195: {
+    type = "rtp"
+    id = 1195
+    description = "5195"
+    media = (
+        {
+            type = "video"
+            mid = "v195"
+            label = "5195"
+            port = 5195
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5195-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-196: {
+    type = "rtp"
+    id = 1196
+    description = "5196"
+    media = (
+        {
+            type = "video"
+            mid = "v196"
+            label = "5196"
+            port = 5196
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5196-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-197: {
+    type = "rtp"
+    id = 1197
+    description = "5197"
+    media = (
+        {
+            type = "video"
+            mid = "v197"
+            label = "5197"
+            port = 5197
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5197-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-198: {
+    type = "rtp"
+    id = 1198
+    description = "5198"
+    media = (
+        {
+            type = "video"
+            mid = "v198"
+            label = "5198"
+            port = 5198
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5198-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-199: {
+    type = "rtp"
+    id = 1199
+    description = "5199"
+    media = (
+        {
+            type = "video"
+            mid = "v199"
+            label = "5199"
+            port = 5199
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5199-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-200: {
+    type = "rtp"
+    id = 1200
+    description = "5200"
+    media = (
+        {
+            type = "video"
+            mid = "v200"
+            label = "5200"
+            port = 5200
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5200-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-201: {
+    type = "rtp"
+    id = 1201
+    description = "5201"
+    media = (
+        {
+            type = "video"
+            mid = "v201"
+            label = "5201"
+            port = 5201
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5201-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-202: {
+    type = "rtp"
+    id = 1202
+    description = "5202"
+    media = (
+        {
+            type = "video"
+            mid = "v202"
+            label = "5202"
+            port = 5202
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5202-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-203: {
+    type = "rtp"
+    id = 1203
+    description = "5203"
+    media = (
+        {
+            type = "video"
+            mid = "v203"
+            label = "5203"
+            port = 5203
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5203-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-204: {
+    type = "rtp"
+    id = 1204
+    description = "5204"
+    media = (
+        {
+            type = "video"
+            mid = "v204"
+            label = "5204"
+            port = 5204
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5204-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-205: {
+    type = "rtp"
+    id = 1205
+    description = "5205"
+    media = (
+        {
+            type = "video"
+            mid = "v205"
+            label = "5205"
+            port = 5205
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5205-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-206: {
+    type = "rtp"
+    id = 1206
+    description = "5206"
+    media = (
+        {
+            type = "video"
+            mid = "v206"
+            label = "5206"
+            port = 5206
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5206-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-207: {
+    type = "rtp"
+    id = 1207
+    description = "5207"
+    media = (
+        {
+            type = "video"
+            mid = "v207"
+            label = "5207"
+            port = 5207
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5207-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-208: {
+    type = "rtp"
+    id = 1208
+    description = "5208"
+    media = (
+        {
+            type = "video"
+            mid = "v208"
+            label = "5208"
+            port = 5208
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5208-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-209: {
+    type = "rtp"
+    id = 1209
+    description = "5209"
+    media = (
+        {
+            type = "video"
+            mid = "v209"
+            label = "5209"
+            port = 5209
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5209-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-210: {
+    type = "rtp"
+    id = 1210
+    description = "5210"
+    media = (
+        {
+            type = "video"
+            mid = "v210"
+            label = "5210"
+            port = 5210
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5210-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-211: {
+    type = "rtp"
+    id = 1211
+    description = "5211"
+    media = (
+        {
+            type = "video"
+            mid = "v211"
+            label = "5211"
+            port = 5211
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5211-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-212: {
+    type = "rtp"
+    id = 1212
+    description = "5212"
+    media = (
+        {
+            type = "video"
+            mid = "v212"
+            label = "5212"
+            port = 5212
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5212-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-213: {
+    type = "rtp"
+    id = 1213
+    description = "5213"
+    media = (
+        {
+            type = "video"
+            mid = "v213"
+            label = "5213"
+            port = 5213
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5213-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-214: {
+    type = "rtp"
+    id = 1214
+    description = "5214"
+    media = (
+        {
+            type = "video"
+            mid = "v214"
+            label = "5214"
+            port = 5214
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5214-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-215: {
+    type = "rtp"
+    id = 1215
+    description = "5215"
+    media = (
+        {
+            type = "video"
+            mid = "v215"
+            label = "5215"
+            port = 5215
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5215-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-216: {
+    type = "rtp"
+    id = 1216
+    description = "5216"
+    media = (
+        {
+            type = "video"
+            mid = "v216"
+            label = "5216"
+            port = 5216
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5216-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-217: {
+    type = "rtp"
+    id = 1217
+    description = "5217"
+    media = (
+        {
+            type = "video"
+            mid = "v217"
+            label = "5217"
+            port = 5217
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5217-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-218: {
+    type = "rtp"
+    id = 1218
+    description = "5218"
+    media = (
+        {
+            type = "video"
+            mid = "v218"
+            label = "5218"
+            port = 5218
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5218-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-219: {
+    type = "rtp"
+    id = 1219
+    description = "5219"
+    media = (
+        {
+            type = "video"
+            mid = "v219"
+            label = "5219"
+            port = 5219
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5219-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-220: {
+    type = "rtp"
+    id = 1220
+    description = "5220"
+    media = (
+        {
+            type = "video"
+            mid = "v220"
+            label = "5220"
+            port = 5220
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5220-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-221: {
+    type = "rtp"
+    id = 1221
+    description = "5221"
+    media = (
+        {
+            type = "video"
+            mid = "v221"
+            label = "5221"
+            port = 5221
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5221-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-222: {
+    type = "rtp"
+    id = 1222
+    description = "5222"
+    media = (
+        {
+            type = "video"
+            mid = "v222"
+            label = "5222"
+            port = 5222
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5222-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-223: {
+    type = "rtp"
+    id = 1223
+    description = "5223"
+    media = (
+        {
+            type = "video"
+            mid = "v223"
+            label = "5223"
+            port = 5223
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5223-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-224: {
+    type = "rtp"
+    id = 1224
+    description = "5224"
+    media = (
+        {
+            type = "video"
+            mid = "v224"
+            label = "5224"
+            port = 5224
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5224-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-225: {
+    type = "rtp"
+    id = 1225
+    description = "5225"
+    media = (
+        {
+            type = "video"
+            mid = "v225"
+            label = "5225"
+            port = 5225
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5225-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-226: {
+    type = "rtp"
+    id = 1226
+    description = "5226"
+    media = (
+        {
+            type = "video"
+            mid = "v226"
+            label = "5226"
+            port = 5226
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5226-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-227: {
+    type = "rtp"
+    id = 1227
+    description = "5227"
+    media = (
+        {
+            type = "video"
+            mid = "v227"
+            label = "5227"
+            port = 5227
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5227-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-228: {
+    type = "rtp"
+    id = 1228
+    description = "5228"
+    media = (
+        {
+            type = "video"
+            mid = "v228"
+            label = "5228"
+            port = 5228
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5228-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-229: {
+    type = "rtp"
+    id = 1229
+    description = "5229"
+    media = (
+        {
+            type = "video"
+            mid = "v229"
+            label = "5229"
+            port = 5229
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5229-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-230: {
+    type = "rtp"
+    id = 1230
+    description = "5230"
+    media = (
+        {
+            type = "video"
+            mid = "v230"
+            label = "5230"
+            port = 5230
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5230-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-231: {
+    type = "rtp"
+    id = 1231
+    description = "5231"
+    media = (
+        {
+            type = "video"
+            mid = "v231"
+            label = "5231"
+            port = 5231
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5231-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-232: {
+    type = "rtp"
+    id = 1232
+    description = "5232"
+    media = (
+        {
+            type = "video"
+            mid = "v232"
+            label = "5232"
+            port = 5232
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5232-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-233: {
+    type = "rtp"
+    id = 1233
+    description = "5233"
+    media = (
+        {
+            type = "video"
+            mid = "v233"
+            label = "5233"
+            port = 5233
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5233-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-234: {
+    type = "rtp"
+    id = 1234
+    description = "5234"
+    media = (
+        {
+            type = "video"
+            mid = "v234"
+            label = "5234"
+            port = 5234
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5234-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-235: {
+    type = "rtp"
+    id = 1235
+    description = "5235"
+    media = (
+        {
+            type = "video"
+            mid = "v235"
+            label = "5235"
+            port = 5235
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5235-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-236: {
+    type = "rtp"
+    id = 1236
+    description = "5236"
+    media = (
+        {
+            type = "video"
+            mid = "v236"
+            label = "5236"
+            port = 5236
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5236-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-237: {
+    type = "rtp"
+    id = 1237
+    description = "5237"
+    media = (
+        {
+            type = "video"
+            mid = "v237"
+            label = "5237"
+            port = 5237
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5237-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-238: {
+    type = "rtp"
+    id = 1238
+    description = "5238"
+    media = (
+        {
+            type = "video"
+            mid = "v238"
+            label = "5238"
+            port = 5238
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5238-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-239: {
+    type = "rtp"
+    id = 1239
+    description = "5239"
+    media = (
+        {
+            type = "video"
+            mid = "v239"
+            label = "5239"
+            port = 5239
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5239-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-240: {
+    type = "rtp"
+    id = 1240
+    description = "5240"
+    media = (
+        {
+            type = "video"
+            mid = "v240"
+            label = "5240"
+            port = 5240
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5240-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-241: {
+    type = "rtp"
+    id = 1241
+    description = "5241"
+    media = (
+        {
+            type = "video"
+            mid = "v241"
+            label = "5241"
+            port = 5241
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5241-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-242: {
+    type = "rtp"
+    id = 1242
+    description = "5242"
+    media = (
+        {
+            type = "video"
+            mid = "v242"
+            label = "5242"
+            port = 5242
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5242-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-243: {
+    type = "rtp"
+    id = 1243
+    description = "5243"
+    media = (
+        {
+            type = "video"
+            mid = "v243"
+            label = "5243"
+            port = 5243
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5243-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-244: {
+    type = "rtp"
+    id = 1244
+    description = "5244"
+    media = (
+        {
+            type = "video"
+            mid = "v244"
+            label = "5244"
+            port = 5244
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5244-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-245: {
+    type = "rtp"
+    id = 1245
+    description = "5245"
+    media = (
+        {
+            type = "video"
+            mid = "v245"
+            label = "5245"
+            port = 5245
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5245-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-246: {
+    type = "rtp"
+    id = 1246
+    description = "5246"
+    media = (
+        {
+            type = "video"
+            mid = "v246"
+            label = "5246"
+            port = 5246
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5246-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-247: {
+    type = "rtp"
+    id = 1247
+    description = "5247"
+    media = (
+        {
+            type = "video"
+            mid = "v247"
+            label = "5247"
+            port = 5247
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5247-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-248: {
+    type = "rtp"
+    id = 1248
+    description = "5248"
+    media = (
+        {
+            type = "video"
+            mid = "v248"
+            label = "5248"
+            port = 5248
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5248-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-249: {
+    type = "rtp"
+    id = 1249
+    description = "5249"
+    media = (
+        {
+            type = "video"
+            mid = "v249"
+            label = "5249"
+            port = 5249
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5249-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-250: {
+    type = "rtp"
+    id = 1250
+    description = "5250"
+    media = (
+        {
+            type = "video"
+            mid = "v250"
+            label = "5250"
+            port = 5250
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5250-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-251: {
+    type = "rtp"
+    id = 1251
+    description = "5251"
+    media = (
+        {
+            type = "video"
+            mid = "v251"
+            label = "5251"
+            port = 5251
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5251-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-252: {
+    type = "rtp"
+    id = 1252
+    description = "5252"
+    media = (
+        {
+            type = "video"
+            mid = "v252"
+            label = "5252"
+            port = 5252
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5252-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-253: {
+    type = "rtp"
+    id = 1253
+    description = "5253"
+    media = (
+        {
+            type = "video"
+            mid = "v253"
+            label = "5253"
+            port = 5253
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5253-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-254: {
+    type = "rtp"
+    id = 1254
+    description = "5254"
+    media = (
+        {
+            type = "video"
+            mid = "v254"
+            label = "5254"
+            port = 5254
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5254-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-255: {
+    type = "rtp"
+    id = 1255
+    description = "5255"
+    media = (
+        {
+            type = "video"
+            mid = "v255"
+            label = "5255"
+            port = 5255
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5255-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-256: {
+    type = "rtp"
+    id = 1256
+    description = "5256"
+    media = (
+        {
+            type = "video"
+            mid = "v256"
+            label = "5256"
+            port = 5256
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5256-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-257: {
+    type = "rtp"
+    id = 1257
+    description = "5257"
+    media = (
+        {
+            type = "video"
+            mid = "v257"
+            label = "5257"
+            port = 5257
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5257-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-258: {
+    type = "rtp"
+    id = 1258
+    description = "5258"
+    media = (
+        {
+            type = "video"
+            mid = "v258"
+            label = "5258"
+            port = 5258
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5258-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-259: {
+    type = "rtp"
+    id = 1259
+    description = "5259"
+    media = (
+        {
+            type = "video"
+            mid = "v259"
+            label = "5259"
+            port = 5259
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5259-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-260: {
+    type = "rtp"
+    id = 1260
+    description = "5260"
+    media = (
+        {
+            type = "video"
+            mid = "v260"
+            label = "5260"
+            port = 5260
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5260-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-261: {
+    type = "rtp"
+    id = 1261
+    description = "5261"
+    media = (
+        {
+            type = "video"
+            mid = "v261"
+            label = "5261"
+            port = 5261
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5261-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-262: {
+    type = "rtp"
+    id = 1262
+    description = "5262"
+    media = (
+        {
+            type = "video"
+            mid = "v262"
+            label = "5262"
+            port = 5262
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5262-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-263: {
+    type = "rtp"
+    id = 1263
+    description = "5263"
+    media = (
+        {
+            type = "video"
+            mid = "v263"
+            label = "5263"
+            port = 5263
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5263-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-264: {
+    type = "rtp"
+    id = 1264
+    description = "5264"
+    media = (
+        {
+            type = "video"
+            mid = "v264"
+            label = "5264"
+            port = 5264
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5264-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-265: {
+    type = "rtp"
+    id = 1265
+    description = "5265"
+    media = (
+        {
+            type = "video"
+            mid = "v265"
+            label = "5265"
+            port = 5265
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5265-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-266: {
+    type = "rtp"
+    id = 1266
+    description = "5266"
+    media = (
+        {
+            type = "video"
+            mid = "v266"
+            label = "5266"
+            port = 5266
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5266-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-267: {
+    type = "rtp"
+    id = 1267
+    description = "5267"
+    media = (
+        {
+            type = "video"
+            mid = "v267"
+            label = "5267"
+            port = 5267
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5267-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-268: {
+    type = "rtp"
+    id = 1268
+    description = "5268"
+    media = (
+        {
+            type = "video"
+            mid = "v268"
+            label = "5268"
+            port = 5268
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5268-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-269: {
+    type = "rtp"
+    id = 1269
+    description = "5269"
+    media = (
+        {
+            type = "video"
+            mid = "v269"
+            label = "5269"
+            port = 5269
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5269-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-270: {
+    type = "rtp"
+    id = 1270
+    description = "5270"
+    media = (
+        {
+            type = "video"
+            mid = "v270"
+            label = "5270"
+            port = 5270
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5270-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-271: {
+    type = "rtp"
+    id = 1271
+    description = "5271"
+    media = (
+        {
+            type = "video"
+            mid = "v271"
+            label = "5271"
+            port = 5271
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5271-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-272: {
+    type = "rtp"
+    id = 1272
+    description = "5272"
+    media = (
+        {
+            type = "video"
+            mid = "v272"
+            label = "5272"
+            port = 5272
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5272-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-273: {
+    type = "rtp"
+    id = 1273
+    description = "5273"
+    media = (
+        {
+            type = "video"
+            mid = "v273"
+            label = "5273"
+            port = 5273
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5273-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-274: {
+    type = "rtp"
+    id = 1274
+    description = "5274"
+    media = (
+        {
+            type = "video"
+            mid = "v274"
+            label = "5274"
+            port = 5274
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5274-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-275: {
+    type = "rtp"
+    id = 1275
+    description = "5275"
+    media = (
+        {
+            type = "video"
+            mid = "v275"
+            label = "5275"
+            port = 5275
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5275-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-276: {
+    type = "rtp"
+    id = 1276
+    description = "5276"
+    media = (
+        {
+            type = "video"
+            mid = "v276"
+            label = "5276"
+            port = 5276
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5276-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-277: {
+    type = "rtp"
+    id = 1277
+    description = "5277"
+    media = (
+        {
+            type = "video"
+            mid = "v277"
+            label = "5277"
+            port = 5277
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5277-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-278: {
+    type = "rtp"
+    id = 1278
+    description = "5278"
+    media = (
+        {
+            type = "video"
+            mid = "v278"
+            label = "5278"
+            port = 5278
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5278-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-279: {
+    type = "rtp"
+    id = 1279
+    description = "5279"
+    media = (
+        {
+            type = "video"
+            mid = "v279"
+            label = "5279"
+            port = 5279
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5279-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-280: {
+    type = "rtp"
+    id = 1280
+    description = "5280"
+    media = (
+        {
+            type = "video"
+            mid = "v280"
+            label = "5280"
+            port = 5280
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5280-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-281: {
+    type = "rtp"
+    id = 1281
+    description = "5281"
+    media = (
+        {
+            type = "video"
+            mid = "v281"
+            label = "5281"
+            port = 5281
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5281-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-282: {
+    type = "rtp"
+    id = 1282
+    description = "5282"
+    media = (
+        {
+            type = "video"
+            mid = "v282"
+            label = "5282"
+            port = 5282
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5282-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-283: {
+    type = "rtp"
+    id = 1283
+    description = "5283"
+    media = (
+        {
+            type = "video"
+            mid = "v283"
+            label = "5283"
+            port = 5283
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5283-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-284: {
+    type = "rtp"
+    id = 1284
+    description = "5284"
+    media = (
+        {
+            type = "video"
+            mid = "v284"
+            label = "5284"
+            port = 5284
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5284-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-285: {
+    type = "rtp"
+    id = 1285
+    description = "5285"
+    media = (
+        {
+            type = "video"
+            mid = "v285"
+            label = "5285"
+            port = 5285
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5285-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-286: {
+    type = "rtp"
+    id = 1286
+    description = "5286"
+    media = (
+        {
+            type = "video"
+            mid = "v286"
+            label = "5286"
+            port = 5286
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5286-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-287: {
+    type = "rtp"
+    id = 1287
+    description = "5287"
+    media = (
+        {
+            type = "video"
+            mid = "v287"
+            label = "5287"
+            port = 5287
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5287-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-288: {
+    type = "rtp"
+    id = 1288
+    description = "5288"
+    media = (
+        {
+            type = "video"
+            mid = "v288"
+            label = "5288"
+            port = 5288
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5288-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-289: {
+    type = "rtp"
+    id = 1289
+    description = "5289"
+    media = (
+        {
+            type = "video"
+            mid = "v289"
+            label = "5289"
+            port = 5289
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5289-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-290: {
+    type = "rtp"
+    id = 1290
+    description = "5290"
+    media = (
+        {
+            type = "video"
+            mid = "v290"
+            label = "5290"
+            port = 5290
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5290-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-291: {
+    type = "rtp"
+    id = 1291
+    description = "5291"
+    media = (
+        {
+            type = "video"
+            mid = "v291"
+            label = "5291"
+            port = 5291
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5291-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-292: {
+    type = "rtp"
+    id = 1292
+    description = "5292"
+    media = (
+        {
+            type = "video"
+            mid = "v292"
+            label = "5292"
+            port = 5292
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5292-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-293: {
+    type = "rtp"
+    id = 1293
+    description = "5293"
+    media = (
+        {
+            type = "video"
+            mid = "v293"
+            label = "5293"
+            port = 5293
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5293-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-294: {
+    type = "rtp"
+    id = 1294
+    description = "5294"
+    media = (
+        {
+            type = "video"
+            mid = "v294"
+            label = "5294"
+            port = 5294
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5294-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-295: {
+    type = "rtp"
+    id = 1295
+    description = "5295"
+    media = (
+        {
+            type = "video"
+            mid = "v295"
+            label = "5295"
+            port = 5295
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5295-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-296: {
+    type = "rtp"
+    id = 1296
+    description = "5296"
+    media = (
+        {
+            type = "video"
+            mid = "v296"
+            label = "5296"
+            port = 5296
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5296-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-297: {
+    type = "rtp"
+    id = 1297
+    description = "5297"
+    media = (
+        {
+            type = "video"
+            mid = "v297"
+            label = "5297"
+            port = 5297
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5297-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-298: {
+    type = "rtp"
+    id = 1298
+    description = "5298"
+    media = (
+        {
+            type = "video"
+            mid = "v298"
+            label = "5298"
+            port = 5298
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5298-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-299: {
+    type = "rtp"
+    id = 1299
+    description = "5299"
+    media = (
+        {
+            type = "video"
+            mid = "v299"
+            label = "5299"
+            port = 5299
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5299-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+
+multistream-300: {
+    type = "rtp"
+    id = 1300
+    description = "5300"
+    media = (
+        {
+            type = "video"
+            mid = "v300"
+            label = "5300"
+            port = 5300
+            pt = 100
+            codec = "h264"
+            record = true
+            recfile = "/opt/janus/recordings/stream-5300-%Y%m%d%H%M%S.mjr"
+        }
+    )
+}
+EOF
+
+# Step 12: Copy demo files to nginx web root
+echo "Copying demo files to /var/www/html..."
+sudo cp -r /opt/janus/share/janus/html/* /var/www/html/
+
+# Step 13: Verify installation
+echo "Verifying Janus installation..."
+/opt/janus/bin/janus --version
+
+
+
+# Step 14: Test Janus with NAT setting
+echo "Starting Janus with NAT 1:1 mapping ($PUBLIC_IP)..."
+/opt/janus/bin/janus --nat-1-1=$PUBLIC_IP -d 5 &
+
+# Wait a few seconds for Janus to start
+sleep 5
+
+# Step 15: Create systemd service for Janus
+echo "Creating systemd service for Janus..."
+cat <<EOF | sudo tee /etc/systemd/system/janus.service > /dev/null
+[Unit]
+Description=Janus WebRTC Gateway
+After=network.target
+
+[Service]
+ExecStart=/opt/janus/bin/janus --nat-1-1=$PUBLIC_IP
+Restart=always
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl enable janus
+sudo systemctl start janus
